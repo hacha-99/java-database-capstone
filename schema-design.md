@@ -57,3 +57,34 @@ Notes:
 - username: VARCHAR(30)
 - password_hash: VARCHAR(100), Not Null
 - email: VARCHAR(100), Not Null
+---
+
+## MongoDB Collection Design
+
+### Collection: prescriptions
+
+```json
+{
+    "_id": "ObjectId('64abc123456')",
+    "patientName": "John Smith",
+    "appointmentId": 51,
+    "medication": [
+        {
+            "name": "Paracetamol",
+            "dosage": "500mg",
+            "doctorNotes": "Take 1 tablet every 6 hours.",
+            "refillCount": 2
+        }, 
+        {
+            "name": "Nasal Spray",
+            "dosage": "0.1%",
+            "doctorNotes": "Up to three sprays daily per nostril",
+            "refillCount": 2
+        }
+    ]
+}
+
+Notes:
+- timestamp extractable from ObjectId
+- one prescription for one appointment → array of medications
+- doctorNotes should contain frequency and amount of tables to take in
