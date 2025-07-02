@@ -82,7 +82,7 @@ Notes:
             "refillCount": 2
         }
     ]
-}
+```
 
 Notes:
 - timestamp extractable from ObjectId
