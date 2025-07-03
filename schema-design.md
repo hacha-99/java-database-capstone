@@ -54,9 +54,9 @@ Notes:
 
 ### Table: admins
 - id: INT, Primary Key, Auto Increment
-- username: VARCHAR(30)
+- username: VARCHAR(30), Not Null
 - password_hash: VARCHAR(100), Not Null
-- email: VARCHAR(100), Not Null
+- email: VARCHAR(100)
 ---
 
 ## MongoDB Collection Design
@@ -82,6 +82,7 @@ Notes:
             "refillCount": 2
         }
     ]
+}
 ```
 
 Notes:
