@@ -52,8 +52,8 @@ public class Appointment {
 
     @Transient
     public Long getAppointmentYearsElapsed(){
-        return appointmentTime.isAfter(LocalDateTime.now()) ? 0 :
-            ChronoUnit.YEARS.between(appointmentTime, LocalDateTime.now());
+        return (appointmentTime.isAfter(LocalDateTime.now()) ? 0 :
+            ChronoUnit.YEARS.between(appointmentTime, LocalDateTime.now()));
             // return 0 if appointment is in future, otherwise years elapsed
     }
 }

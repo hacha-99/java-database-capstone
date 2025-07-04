@@ -34,14 +34,13 @@ Notes:
 
 ### Table: doctors
 - id: INT, Primary Key, Auto Increment
-- first_name: VARCHAR(30)
-- last_name: VARCHAR(30), Not Null
-- date_of_birth: DATE, Not Null
-- gender: INT (0 = Male, 1 = Female, 2 = Other), Not Null
-- specialization: VARCHAR(50)
-- email: VARCHAR(100)
+- full_name: VARCHAR(100), Not Null
+- date_of_birth: DATE
+- gender: INT (0 = Male, 1 = Female, 2 = Other)
+- specialization: VARCHAR(50), Not Null
+- email: VARCHAR(100), Not Null
 - password_hash: VARCHAR(100)
-- phone_number: VARCHAR(15)
+- phone_number: VARCHAR(10), Not Null
 - address: VARCHAR(50), Not Null
 - active: BOOLEAN, Default TRUE
 
