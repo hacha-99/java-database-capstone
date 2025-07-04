@@ -31,8 +31,8 @@ public class Doctor {
     private String email;
 
     @NotNull
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY) // control serialization
     @Size(min = 6, max = 100)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY) // control serialization
     private String password;
 
     @NotNull
@@ -46,7 +46,7 @@ public class Doctor {
     @Max(2)
     private int gender; // 0 = Male, 1 = Female, 2 = Other
 
-    @Size(max = 50)
+    @Size(max = 255)
     private String address;
 
     private boolean active = true;
