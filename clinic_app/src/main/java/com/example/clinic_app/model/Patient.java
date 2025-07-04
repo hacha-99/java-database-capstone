@@ -2,7 +2,6 @@ package com.example.clinic_app.model;
 
 
 import java.time.LocalDate;
-import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
