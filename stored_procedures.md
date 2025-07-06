@@ -28,7 +28,6 @@ DELIMITER ;
 
 ```sql
 CALL GetDailyAppointmentReportByDoctor('2025-04-15');
-```
 +------------------+----------------------------+--------+----------------+---------------+
 | doctor_name      | appointment_time           | status | patient_name   | patient_phone |
 +------------------+----------------------------+--------+----------------+---------------+
@@ -36,6 +35,7 @@ CALL GetDailyAppointmentReportByDoctor('2025-04-15');
 | Dr. Mark Johnson | 2025-04-15 12:00:00.000000 |      1 | Michael Jordan | 888-444-4444  |
 | Dr. Mark Johnson | 2025-04-15 13:00:00.000000 |      1 | Olivia Moon    | 888-555-5555  |
 +------------------+----------------------------+--------+----------------+---------------+
+```
 
 ---
 
@@ -65,12 +65,12 @@ DELIMITER ;
 
 ```sql
 CALL GetDoctorWithMostPatientsByMonth(4, 2025);
-```
 +-----------+---------------+
 | doctor_id | patients_seen |
 +-----------+---------------+
 |         2 |            31 |
 +-----------+---------------+
+```
 
 ---
 
@@ -98,9 +98,9 @@ DELIMITER ;
 
 ```sql
 CALL GetDoctorWithMostPatientsByYear(2025);
-```
 +-----------+---------------+
 | doctor_id | patients_seen |
 +-----------+---------------+
 |         1 |            34 |
 +-----------+---------------+
+```
