@@ -44,12 +44,13 @@ public class Doctor {
 
     @Min(0)
     @Max(2)
-    private int gender; // 0 = Male, 1 = Female, 2 = Other
+    private Integer gender; // 0 = Male, 1 = Female, 2 = Other; primitive types (including int) cant be null, use Integer
 
     @Size(max = 255)
     private String address;
 
-    private boolean active = true;
+    @Column(columnDefinition = "boolean default true")
+    private boolean active;
     
 
     public Long getId() {

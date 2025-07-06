@@ -45,7 +45,8 @@ public class Patient {
     @Size(max = 255)
     private String address;
 
-    private boolean active = true;
+    @Column(columnDefinition = "boolean default true")
+    private boolean active;
 
     public Long getId() {
         return id;
