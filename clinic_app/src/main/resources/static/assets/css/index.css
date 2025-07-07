@@ -4,28 +4,94 @@
     box-sizing: border-box;
 }
 
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
 .wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
 }
 
 h2 {
-    font-size: 40px;
+    font-size: clamp(1rem, 40px, 3rem);
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
-    color: #00322f;
+    color: #004742;
+    padding-bottom: 4vh;
+    text-shadow: 2px 2px 2px white;
 }
 
 button {
     font-size: 20px;
     font-family: Arial, Helvetica, sans-serif;
     border-radius: 10px;
+    border: none;
     padding-left: 5vw;
     padding-right: 5vw;
-    padding-top: 1vw;
-    padding-bottom: 1vw;
-    /* ADD MIN AND MAX WIDTH */
+    padding-top: 1em;
+    padding-bottom: 1em;
+    min-width: 100pt;
+    max-width: 200pt;
     color: #eeeeee;
     background-color: #006159;
+    transition: background-color 0.3s ease;
+    margin: 9pt;
+}
+
+button:hover {
+  background-color: #004e47;
+  cursor: pointer;
+}
+
+button:active {
+  background-color: #003732;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    background-image: url("../images/background_by_parentingupstream_from_pixabay.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    flex-grow: 1;
+    min-height: 100vh;
+    min-width: 100vw;
+    /* does the header and footer overlap the main-content or does the height need adjustment? */
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.modal {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.5);
+    z-index: 1000;
+}
+
+#modal-body {
+    background: rgb(225, 225, 225);
+    padding: 2em;
+    border-radius: 12px;
+    min-width: 300px;
+    max-width: 90vw;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
