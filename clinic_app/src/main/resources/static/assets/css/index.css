@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
 .container{
@@ -23,7 +24,6 @@
 h2 {
     font-size: 2.5rem;
     font-weight: bold;
-    font-family: Arial, sans-serif;
     color: #004742;
     padding-bottom: 4vh;
     text-shadow: 2px 2px 2px white;
@@ -31,8 +31,7 @@ h2 {
 
 button {
     font-size: 1.2rem;
-    font-family: Arial, sans-serif;
-    border-radius: 50px;
+    border-radius: 15px;
     border: none;
     padding: 1em 5em;
     min-width: 10vw;
@@ -75,13 +74,16 @@ button:active {
     /* z.B. */
     height: 5rem;
     background: #006159;
-    color: #606060;
+    color: #eeeeee;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 0 2em;
+    justify-content: flex-start;
+    gap: 2rem;
+    padding: 0 2rem;
     min-width: 100vw;
-    border-bottom: 2pt solid gray ;
+    border-bottom: 2pt solid gray;
+    font-size: 2rem;
+    font-weight: bold;
 }
 
 #header > a {
@@ -115,7 +117,9 @@ button:active {
 
 #footer > span {
     max-width: 60ch;
-    color: #eeeeee;
+    color: #8e8e8e;
+    border-left: 2pt solid gray;
+    padding-left: 1rem;
 }
 
 .modal {
