@@ -15,20 +15,20 @@
     <body>
         <div class="container">
             <div class="wrapper">
-                <div id="header"></div>
+                <div id="header">test-header</div>
                 <main class="main-content">
                     <input type="text" id="searchBar" placeholder="Search by doctor name" />
                     <section class="filters">
-                        <div id="timeDiv">
-                            <select id="sortTime">
+                        <div class="filterDiv" id="timeDiv">
+                            <select class="filterSelects" id="sortTime">
                                 <option value="" selected disabled>Sort by time</option>
                                 <option value="asc">Earliest first</option>
                                 <option value="desc">Latest first</option>
                             </select>
                             <button class="timeReset"><img th:src="@{/assets/images/reset_icon_by_inkubators.png}" alt="Reset"></button>
                         </div>
-                        <div id="specialtyDiv">
-                            <select id="filterSpecialty">
+                        <div class="filterDiv" id="specialtyDiv">
+                            <select class="filterSelects" id="filterSpecialty">
                                 <option value="" selected disabled>Filter by specialty</option>
                                 <option value="cardiology">Cardiology</option>
                                 <option value="dermatology">Dermatology</option>
@@ -36,10 +36,14 @@
                             </select>
                             <button class="specialtyReset"><img th:src="@{/assets/images/reset_icon_by_inkubators.png}" alt="Reset"></button>
                         </div>
+                        <button id="adminBtn">Add Doctor</button>
                     </section>
-                    <div id="content"></div>
+                    <div id="content">
+                        <div style="border: 2px solid gray;">card</div>
+                        <div style="border: 2px solid gray;">card2</div>
+                    </div>
                 </main>
-                <div id="footer"></div>
+                <div id="footer">test-footer</div>
             </div>
         </div>
         <div id="modal" class="modal">

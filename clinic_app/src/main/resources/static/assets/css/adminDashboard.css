@@ -4,10 +4,15 @@
     box-sizing: border-box;
 }
 
-html, body, .container, .wrapper { 
-    height: 100vh;
-    width: 100vw;
+html, body, .container { 
+    height: 100%;
     font-family: Arial, sans-serif; 
+}
+
+.wrapper { 
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 #modal {
@@ -17,13 +22,14 @@ html, body, .container, .wrapper {
 
 .main-content {
     padding: 2rem;
-    min-height: 100%;
+
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
+    flex: 1 1 auto;
 
-    background-image: url("../images/background_by_parentingupstream_from_pixabay.jpg");
+    background-image: url("../images/health-still-life-with-copy-space.jpg");
     background-attachment: fixed;
     background-size: cover;
     background-repeat: no-repeat;
@@ -34,37 +40,58 @@ html, body, .container, .wrapper {
     margin-top: 2rem;
 }
 
+#content {
+    flex: 1 0 auto;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+#content > div {
+    flex: 1 1 20rem;
+    min-width: 20rem;
+    height: 13rem;
+    border-radius: 10px;
+    text-align: center;
+    padding: 1rem;
+}
+
 #searchBar {
     padding: 1rem 1rem;
     border-radius: 20px;
     width: 100%;
+    transition: border-color 0.3s ease;
+    outline: none;
+
 }
 
 .filters {
     display: flex;
     flex-wrap: wrap;
+    gap: 1rem;
+    width: 100%;
+    /* justify-content: flex-start;
+    align-items: flex-start; */
 }
 
-.filters > * {
-    /* applies to filter + button */
-    margin-right: 1rem;
-}
-
-.filters select {
+select {
     height: 2rem;
 }
 
-.filters button {
+.filterDiv button {
     display: flex;
     justify-content: center;
     align-items: center;
-
-    border-color: #006159;
 
     border-radius: 10px;
 
     height: 2rem;
     width: 2rem;
+
+    transition: border-color 0.3s ease;
 }
 
 button img {
@@ -72,25 +99,48 @@ button img {
     width: 1.5rem;
 }
 
-#sortTime, #filterSpecialty {
+.filterSelects {
     border-radius: 10px;
     padding: 0 1rem;
     transition: border-color 0.3s ease;
+    width: 10rem;
 }
 
-#timeDiv, #specialtyDiv {
+.filterDiv {
     display: flex;
     gap: 0.3rem;
 }
 
-#searchBar {
-    border-color: gray;
-    outline: none;
-    transition: border-color 0.3s ease;
+.filters > * {
+    margin-top: 0.5rem;
 }
 
-#searchBar:focus, #sortTime:focus, #sortTime:hover, #filterSpecialty:focus, #filterSpecialty:hover {
+#adminBtn {
+    height: 2rem;
+    padding: 0 1rem;
+    border-radius: 10px;
+    background-color: #006159;
+    color: white;
+    border: none;
+    margin-left: auto; /* pushes element to the right */
+    transition: background-color 0.3s ease;
+}
+
+#adminBtn:hover {
+  background-color: #004e47;
+  cursor: pointer;
+}
+
+#adminBtn:active {
+  background-color: #003732;
+}
+
+#searchBar:hover,
+#searchBar:focus,
+#sortTime:hover,
+#filterSpecialty:hover,
+.filterDiv button:hover,
+#content > div:hover {
     border-color: #006159;
 }
-
 
