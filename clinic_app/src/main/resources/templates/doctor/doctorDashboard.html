@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Doctor Dashboard</title>
+        <link rel="icon" href="./assets/images/clinic_icon_by_Linector.png" type="image/x-icon"/>
+        
+        <link rel="stylesheet" th:href="@{/assets/css/adminDashboard.css}">
+        <link rel="stylesheet" th:href="@{/assets/css/doctorDashboard.css}">
+        <link rel="stylesheet" th:href="@{/assets/css/style.css}">
+
+        <script th:src="@{/js/render.js}" defer></script>
+        <script th:src="@{/js/util.js}" defer></script>
+
+        <script th:src="@{/js/components/header.js}" defer></script>
+        <script th:src="@{/js/components/footer.js}" defer></script>
+        <script th:src="@{/js/components/patientRows.js}" defer></script>
+
+        <script th:src="@{/js/components/patientServices.js}" defer></script>
+        <script th:src="@{/js/components/doctorDashboard.js}" defer></script>
+    </head>
+    <body>
+       <div class="container">
+            <div class="wrapper">
+                <div id="header">
+                    <!-- dynamic -->
+                </div>
+                <main class="main-content">
+                    <input type="text" id="searchBar"/>
+                    <div class="filters">
+                        <button id="today">Today’s Appointments</button>
+                        <input type="date" id="otherDate"/>
+                    </div>
+                    <table id="patientTable">
+                        <thead>
+                            <tr>
+                                <th scope="col">Patient ID</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Phone</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Prescription</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- dynamic -->
+                        </tbody>
+                    </table>
+                </main>
+                <div class="footer">
+                    <!-- dynamic -->
+                </div>
+            </div>
+       </div> 
+    </body>
+</html>

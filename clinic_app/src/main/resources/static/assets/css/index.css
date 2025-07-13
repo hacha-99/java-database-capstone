@@ -1,8 +1,18 @@
+
+.roboto-regular {
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 350;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: Roboto, sans-serif;
 }
 
 .container{
@@ -29,7 +39,7 @@ h2 {
     text-shadow: 2px 2px 2px white;
 }
 
-button {
+main button {
     font-size: 1.2rem;
     border-radius: 15px;
     border: none;
@@ -42,12 +52,12 @@ button {
     margin: 1rem;
 }
 
-button:hover {
+main button:hover {
   background-color: #004e47;
   cursor: pointer;
 }
 
-button:active {
+main button:active {
   background-color: #003732;
 }
 
@@ -69,9 +79,8 @@ button:active {
     background-position: center;
     background-attachment: fixed;
 }
-
+/* 
 #header {
-    /* z.B. */
     height: 5rem;
     background: #006159;
     color: #eeeeee;
@@ -120,29 +129,61 @@ button:active {
     color: #8e8e8e;
     border-left: 2pt solid gray;
     padding-left: 1rem;
+} */
+
+#modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    /* display: none; */
+    /* add box shadow */
+    transition: display 0.3s ease;
+
+    background-color: #006159;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    height: 85vh;
+    width: 85vw;
+
+    border-radius: 10px;
+    border: 2px solid white;
+
+    padding: 1rem;
 }
 
-.modal {
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(0,0,0,0.5);
-    z-index: 1000;
+#closeModal {
+    position: absolute;
+    padding: 1rem;
+    top: 0;
+    right: 0.4rem;
+    font-size: 2rem;
+    color: white;
+    cursor: pointer;
+    z-index: 10;
+
+    background: transparent;
+    border: none;
+}
+
+#closeModal:active {
+    color: lightgray;
 }
 
 #modal-body {
-    background: rgb(225, 225, 225);
-    padding: 2em;
-    border-radius: 12px;
-    min-width: 50vw;
-    max-width: 90vw;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.2);
-    position: relative;
+    flex: 1;
 
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
+}
+
+#modal-body > * {
+    min-width: 20rem;
 }

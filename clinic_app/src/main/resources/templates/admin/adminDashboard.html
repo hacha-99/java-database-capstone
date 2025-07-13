@@ -3,6 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <title>Admin Dashboard</title>
+        <link rel="icon" href="./assets/images/clinic_icon_by_Linector.png" type="image/x-icon"/>
+
         <link rel="stylesheet" th:href="@{/assets/css/adminDashboard.css}">
         <link rel="stylesheet" th:href="@{/assets/css/style.css}">
 
@@ -15,7 +17,9 @@
     <body>
         <div class="container">
             <div class="wrapper">
-                <div id="header">test-header</div>
+                <div id="header">
+                    <!-- dynamic -->
+                </div>
                 <main class="main-content">
                     <input type="text" id="searchBar" placeholder="Search by doctor name" />
                     <section class="filters">
@@ -43,14 +47,16 @@
                         <div style="border: 2px solid gray;">card2</div>
                     </div>
                 </main>
-                <div id="footer">test-footer</div>
+                <div id="footer">
+                    <!-- dynamic -->
+                </div>
             </div>
         </div>
         <div id="modal" class="modal">
-            <span id="closeModal" class="close">&times;</span>
+            <button id="closeModal" class="close">&times;</button>
             <div id="modal-body">
-                <div>name</div>
-                <div>adresse</div>
+                <div>test</div>
+                <div>test2</div>
             </div>
         </div>
         <script type="module" src="../js/services/adminDashboard.js" defer></script>

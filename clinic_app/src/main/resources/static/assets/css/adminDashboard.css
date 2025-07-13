@@ -2,11 +2,13 @@
     margin: 0; 
     padding: 0; 
     box-sizing: border-box;
+    font-family: Arial, sans-serif; 
 }
 
 html, body, .container { 
     height: 100%;
     font-family: Arial, sans-serif; 
+
 }
 
 .wrapper { 
@@ -20,7 +22,8 @@ html, body, .container {
     flex-direction: column;
     justify-content: center;
 
-    display: none;
+    /* display: none; */
+    /* add box shadow */
     transition: display 0.3s ease;
 
     background-color: #006159;
@@ -38,7 +41,7 @@ html, body, .container {
     padding: 1rem;
 }
 
-#modal > span {
+#closeModal {
     position: absolute;
     padding: 1rem;
     top: 0;
@@ -47,6 +50,13 @@ html, body, .container {
     color: white;
     cursor: pointer;
     z-index: 10;
+
+    background: transparent;
+    border: none;
+}
+
+#closeModal:active {
+    color: lightgray;
 }
 
 #modal-body {
@@ -61,7 +71,6 @@ html, body, .container {
 }
 
 #modal-body > * {
-    background-color: lightgray;
     min-width: 20rem;
 }
 
