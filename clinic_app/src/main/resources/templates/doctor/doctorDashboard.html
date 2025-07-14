@@ -26,10 +26,14 @@
                     <!-- dynamic -->
                 </div>
                 <main class="main-content">
-                    <input type="text" id="searchBar"/>
+                    <input type="text" id="searchBar" placeholder="Search patient..."/>
                     <div class="filters">
-                        <button id="today">Today’s Appointments</button>
-                        <input type="date" id="otherDate"/>
+                        <div class="filterDiv" id="dateDiv">
+                            <input type="date" id="otherDate"/>
+                        </div>
+                        <div class="filterDiv" id="todayDiv">
+                            <button id="today">Today’s Appointments</button>
+                        </div>
                     </div>
                     <table id="patientTable">
                         <thead>

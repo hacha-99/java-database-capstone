@@ -1,16 +1,16 @@
-* { 
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+#today {
+    background-color: #015c5d;
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease;
+
 }
 
-html, body {
-    height: 100%;
-    font-family: Arial, sans-serif;
+#today:hover {
+  background-color: #017d7e;
+  cursor: pointer;
 }
 
-.wrapper {
-    display: flex;
-    flex-direction: column;
-    
+#today:active {
+  background-color: #015c5d;
 }

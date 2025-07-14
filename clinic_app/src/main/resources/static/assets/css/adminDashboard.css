@@ -2,7 +2,6 @@
     margin: 0; 
     padding: 0; 
     box-sizing: border-box;
-    font-family: Arial, sans-serif; 
 }
 
 html, body, .container { 
@@ -22,7 +21,7 @@ html, body, .container {
     flex-direction: column;
     justify-content: center;
 
-    /* display: none; */
+    display: none;
     /* add box shadow */
     transition: display 0.3s ease;
 
@@ -116,7 +115,7 @@ html, body, .container {
 
 #searchBar {
     padding: 1rem 1rem;
-    border-radius: 20px;
+    border-radius: 10px;
     width: 100%;
     transition: border-color 0.3s ease;
     outline: none;
@@ -132,8 +131,9 @@ html, body, .container {
     align-items: flex-start; */
 }
 
-select {
+.filterDiv > * {
     height: 2rem;
+    border-radius: 10px;
 }
 
 .filterDiv button {
@@ -141,21 +141,18 @@ select {
     justify-content: center;
     align-items: center;
 
-    border-radius: 10px;
-
-    height: 2rem;
-    width: 2rem;
+    width: fit-content;
+    padding: 0 0.5rem;
 
     transition: border-color 0.3s ease;
 }
 
-button img {
+.filterDiv button img {
     height: 1.5rem;
     width: 1.5rem;
 }
 
 .filterSelects {
-    border-radius: 10px;
     padding: 0 1rem;
     transition: border-color 0.3s ease;
     width: 10rem;
@@ -174,7 +171,7 @@ button img {
     height: 2rem;
     padding: 0 1rem;
     border-radius: 10px;
-    background-color: #006159;
+    background-color: #015c5d;
     color: white;
     border: none;
     margin-left: auto; /* pushes element to the right */
@@ -182,12 +179,12 @@ button img {
 }
 
 #adminBtn:hover {
-  background-color: #004e47;
+  background-color: #017d7e;
   cursor: pointer;
 }
 
 #adminBtn:active {
-  background-color: #003732;
+  background-color: #015c5d;
 }
 
 #searchBar:hover,

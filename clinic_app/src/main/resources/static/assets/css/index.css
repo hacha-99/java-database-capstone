@@ -47,18 +47,18 @@ main button {
     min-width: 10vw;
     max-width: 90vw;
     color: #eeeeee;
-    background-color: #006159;
+    background-color: #015c5d;
     transition: background-color 0.3s ease;
     margin: 1rem;
 }
 
 main button:hover {
-  background-color: #004e47;
+  background-color: #017d7e;
   cursor: pointer;
 }
 
 main button:active {
-  background-color: #003732;
+  background-color: #015c5d;
 }
 
 .main-content {
@@ -136,7 +136,7 @@ main button:active {
     flex-direction: column;
     justify-content: center;
 
-    /* display: none; */
+    display: none;
     /* add box shadow */
     transition: display 0.3s ease;
 
