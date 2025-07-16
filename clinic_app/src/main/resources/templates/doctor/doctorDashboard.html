@@ -1,40 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Doctor Dashboard</title>
-        <link rel="icon" href="./assets/images/clinic_icon_by_Linector.png" type="image/x-icon"/>
-        
-        <link rel="stylesheet" th:href="@{/assets/css/adminDashboard.css}">
-        <link rel="stylesheet" th:href="@{/assets/css/doctorDashboard.css}">
-        <link rel="stylesheet" th:href="@{/assets/css/style.css}">
 
-        <script th:src="@{/js/render.js}" defer></script>
-        <script th:src="@{/js/util.js}" defer></script>
+<head>
+    <meta charset="UTF-8">
+    <title>Doctor Dashboard</title>
+    <link rel="icon" href="./assets/images/clinic_icon_by_Linector.png" type="image/x-icon" />
 
-        <script th:src="@{/js/components/header.js}" defer></script>
-        <script th:src="@{/js/components/footer.js}" defer></script>
-        <script th:src="@{/js/components/patientRows.js}" defer></script>
+    <link rel="stylesheet" th:href="@{/assets/css/adminDashboard.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/doctorDashboard.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}">
 
-        <script th:src="@{/js/components/patientServices.js}" defer></script>
-        <script th:src="@{/js/components/doctorDashboard.js}" defer></script>
-    </head>
-    <body>
-       <div class="container">
-            <div class="wrapper">
-                <div id="header">
-                    <!-- dynamic -->
-                </div>
-                <main class="main-content">
-                    <input type="text" id="searchBar" placeholder="Search patient..."/>
-                    <div class="filters">
-                        <div class="filterDiv" id="dateDiv">
-                            <input type="date" id="otherDate"/>
-                        </div>
-                        <div class="filterDiv" id="todayDiv">
-                            <button id="today">Today’s Appointments</button>
-                        </div>
+    <script th:src="@{/js/render.js}" defer></script>
+    <script th:src="@{/js/util.js}" defer></script>
+
+    <script th:src="@{/js/components/header.js}" defer></script>
+    <script th:src="@{/js/components/footer.js}" defer></script>
+    <script th:src="@{/js/components/patientRows.js}" defer></script>
+
+    <script th:src="@{/js/components/patientServices.js}" defer></script>
+    <script th:src="@{/js/components/doctorDashboard.js}" defer></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="wrapper">
+            <div id="header">
+                <!-- dynamic -->
+            </div>
+            <main class="main-content">
+                <input type="text" id="searchBar" placeholder="Search patient..." />
+                <div class="filters">
+                    <div class="filterDiv" id="dateDiv">
+                        <input type="date" id="otherDate" />
                     </div>
+                    <div class="filterDiv" id="todayDiv">
+                        <button id="today">Today’s Appointments</button>
+                    </div>
+                </div>
+                <div class="table-wrapper">
+                    <!-- wrap table to avoid unexpected behavior with display property -->
                     <table id="patientTable">
                         <thead>
                             <tr>
@@ -47,13 +51,34 @@
                         </thead>
                         <tbody>
                             <!-- dynamic -->
+                            <tr>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td>4</td>
+                                <td><button class="prescription-btn"><img
+                                            th:src="@{/assets/images/clinic_icon_by_Linector.png}"
+                                            alt="Prescription" /></button></td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>6</td>
+                                <td>7</td>
+                                <td>8</td>
+                                <td>8</td>
+                            </tr>
+                            <tr class="noPatientRecord">
+                                <td colspan="5">No results.</td>
+                            </tr>
                         </tbody>
                     </table>
-                </main>
-                <div class="footer">
-                    <!-- dynamic -->
                 </div>
+            </main>
+            <div class="footer">
+                <!-- dynamic -->
             </div>
-       </div> 
-    </body>
+        </div>
+    </div>
+</body>
+
 </html>

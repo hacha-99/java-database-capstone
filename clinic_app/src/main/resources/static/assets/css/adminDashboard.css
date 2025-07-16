@@ -10,6 +10,18 @@ html, body, .container {
 
 }
 
+@media (max-width: 768px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 13px;
+  }
+}
+
 .wrapper { 
     height: 100%;
     display: flex;
@@ -83,11 +95,13 @@ html, body, .container {
     justify-content: flex-start;
     flex: 1 1 auto;
 
-    background-image: url("../images/health-still-life-with-copy-space.jpg");
+    /* background-image: url("../images/health-still-life-with-copy-space.jpg");
     background-attachment: fixed;
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: center; */
+
+    background: fixed no-repeat center/cover url("../images/health-still-life-with-copy-space.jpg");
 }
 
 .main-content > * {

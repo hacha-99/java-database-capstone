@@ -15,6 +15,18 @@
     font-family: Roboto, sans-serif;
 }
 
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 12px;
+  }
+}
+
 .container{
     display: flex;
     flex-direction: column;
@@ -36,7 +48,9 @@ h2 {
     font-weight: bold;
     color: #004742;
     padding-bottom: 4vh;
-    text-shadow: 2px 2px 2px white;
+    /* text-shadow: 2px 2px 2px white; */
+    /* text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white; */
+    /* -webkit-text-stroke: 1px white; */
 }
 
 main button {
@@ -69,15 +83,16 @@ main button:active {
     align-items: center;
     justify-content: center;
     
-    background-image: url("../images/health-still-life-with-copy-space.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    
     flex: 1 0 auto;
     min-width: 100vw;
-    /* does the header and footer overlap the main-content or does the height need adjustment? */
+    
+    /* background-image: url("../images/health-still-life-with-copy-space.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
     background-position: center;
-    background-attachment: fixed;
+    background-attachment: fixed; */
+
+    background: fixed no-repeat center/cover url("../images/health-still-life-with-copy-space.jpg");
 }
 /* 
 #header {

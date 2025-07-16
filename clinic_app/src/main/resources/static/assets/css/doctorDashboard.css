@@ -7,10 +7,84 @@
 }
 
 #today:hover {
-  background-color: #017d7e;
-  cursor: pointer;
+    background-color: #017d7e;
+    cursor: pointer;
 }
 
 #today:active {
-  background-color: #015c5d;
+    background-color: #015c5d;
+}
+
+.table-wrapper {
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+  .table-wrapper {
+    overflow-x: auto;
+    /* allows horizontal scrolling if necessary */
+  }
+
+  #patientTable {
+    min-width: 600px;
+  }
+}
+
+#patientTable {
+    width: 100%;
+    /* align-self: center; */
+    border-collapse: collapse;
+    color: whitesmoke;
+    background-color: #015c5d7f;
+}
+
+#patientTable thead {
+    background-color: rgba(29, 111, 113, 0.6);
+}
+
+tr {
+    height: 3rem;
+    text-align: center;
+    color: black;
+    transition: background-color 0.3s ease-out;
+}
+
+table tr:nth-child(odd) {
+    background-color: rgba(255, 255, 255, 0.4)
+}
+
+table tr:nth-child(even) {
+    background-color: rgba(156, 156, 156, 0.502)
+}
+
+tbody tr:hover {
+    background-color: #017e7e80;
+}
+
+.prescription-btn img {
+    height: 2rem;
+}
+
+.prescription-btn {
+    background: none;
+    border: none;
+    transition: background-color 0.3s ease;
+    border-radius: 10px;
+    height: 2.5rem;
+    width: 2.5rem;
+}
+
+.prescription-btn:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.prescription-btn:active {
+    background-color: rgba(255, 255, 255, 0.65);
+    transition: none;
+}
+
+.noPatientRecord {
+    display: none; /* default for tr is table-row; control with js */
+    font-style: italic;
+    color: grey;
 }
