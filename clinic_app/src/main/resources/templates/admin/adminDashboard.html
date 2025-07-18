@@ -44,7 +44,7 @@
                         <button id="specialtyReset"><img th:src="@{/assets/images/reset_icon_by_inkubators.png}"
                                 alt="Reset"></button>
                     </div>
-                    <button id="adminBtn">Add Doctor</button>
+                    <button id="adminBtn" onclick="openModal()">Add Doctor</button>
                 </div>
                 <div id="content">
                     <!-- <div style="border: 2px solid gray;">card</div>
@@ -69,58 +69,6 @@
     </div>
     <script type="module" src="../js/services/adminDashboard.js" defer></script>
     <script type="module" src="../js/components/doctorCard.js" defer></script>
-
-    <script>
-        const btn = document.getElementById("adminBtn");
-        const modal = document.getElementById("modal");
-        const backdrop = document.getElementById("backdrop");
-        const closeModal = document.getElementById("closeModal");
-
-        btn.addEventListener("click", e => {
-            modal.classList.toggle("active");
-            modal.style.opacity = '1';
-            modal.style.visibility = 'visible';
-            modal.style.pointerEvents = 'auto';
-
-            backdrop.classList.toggle("active");
-            backdrop.style.opacity = '1';
-
-            setTimeout(() => {
-                modal.classList.toggle("active");
-
-            }, 500);
-        });
-
-        // cant be same name as variable, breaks stuff...
-        function closeModalfunc() {
-            backdrop.style.opacity = '0';
-            setTimeout(() => {
-                backdrop.classList.toggle("active");
-            }, 500);
-
-            modal.classList.toggle("hide");
-
-            setTimeout(() => {
-                modal.classList.toggle("hide");
-                modal.style.opacity = '0';
-                modal.style.visibility = 'hidden';
-                modal.style.pointerEvents = 'none';
-            }, 500);
-        }
-
-        closeModal.addEventListener("click", e => {
-            closeModalfunc();
-        })
-
-        backdrop.addEventListener("click", e => {
-            closeModalfunc();
-        })
-
-        document.addEventListener("keydown", e => {
-            closeModalfunc();
-        })
-
-    </script>
 </body>
 
 </html>

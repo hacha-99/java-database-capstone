@@ -48,10 +48,10 @@
                     <div class="doctorCard">
                         <div class="cardInfo">
                             <span>info1 about doctor</span>
-                            <span>info2 about Appointment</span>
+                            <span>info1.1 about Appointment</span>
                         </div>
                         <div class="card-actions">
-                            <button class="cardButton">Book Now</button>
+                            <button class="cardButton" onclick="openModal()">Book Now</button>
                         </div>
                     </div>
                     <div class="doctorCard">
@@ -103,6 +103,8 @@
 
                 // Nach Animation entfernen
                 setTimeout(() => ripple.remove(), 700);
+
+                // openModal(); // better use onclick in dynamically injected html elements for better understanding
             });
         });
     </script>
