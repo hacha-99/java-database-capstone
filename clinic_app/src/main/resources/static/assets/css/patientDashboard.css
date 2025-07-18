@@ -1,0 +1,62 @@
+.cardInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.cardInfo {
+    height: 70%;
+    background-color: white;
+    border-radius: 10px 10px 0 0;
+}
+
+.card-actions {
+    height: 30%;
+    width: 100%;
+}
+
+.doctorCard button {
+    height: 100%;
+    width: 100%;
+    background-color: #015c5d;
+    font-size: 1.5em;
+    color: white;
+    border: none;
+    border-radius: 0 0 10px 10px;
+    transition: background-color 0.3s ease;
+    text-align: center;
+
+    position: relative;
+    /* for ::after positioning */
+    overflow: clip;
+}
+
+.doctorCard button:hover {
+    background-color: #017d7e;
+    cursor: pointer;
+}
+
+.doctorCard button:active {
+    background-color: #015c5d;
+    transition: none;
+}
+
+.ripple-overlay {
+    position: fixed;
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    transform: translate(-50%, -50%) scale(0);
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 1s ease-out, opacity 0.6s ease-out;
+    filter: blur(5px);
+}
+
+.ripple-overlay.active {
+    transform: translate(-50%, -50%) scale(15);
+    opacity: 0;
+}

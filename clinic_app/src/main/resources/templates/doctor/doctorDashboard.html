@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Doctor Dashboard</title>
-    <link rel="icon" href="./assets/images/clinic_icon_by_Linector.png" type="image/x-icon" />
+    <link rel="icon" th:href="@{/assets/images/clinic_icon_by_Linector.png}" type="image/x-icon" />
 
     <link rel="stylesheet" th:href="@{/assets/css/adminDashboard.css}">
     <link rel="stylesheet" th:href="@{/assets/css/doctorDashboard.css}">
@@ -29,7 +29,7 @@
             </div>
             <main class="main-content">
                 <input type="text" id="searchBar" placeholder="Search patient..." />
-                <div class="filters">
+                <div class="filter-wrapper">
                     <div class="filterDiv" id="dateDiv">
                         <input type="date" id="otherDate" />
                     </div>

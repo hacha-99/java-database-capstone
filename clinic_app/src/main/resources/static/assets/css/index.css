@@ -73,6 +73,7 @@ main button:hover {
 
 main button:active {
   background-color: #015c5d;
+  transition: none;
 }
 
 .main-content {

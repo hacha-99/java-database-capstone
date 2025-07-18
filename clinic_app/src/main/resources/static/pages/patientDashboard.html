@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="icon" href="../assets/images/clinic_icon_by_Linector.png" type="image/x-icon" />
+
+    <link rel="stylesheet" href="../assets/css/adminDashboard.css" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="../assets/css/patientDashboard.css" />
+
+    <script src="../js/render.js" defer></script>
+    <script src="../js/util.js" defer></script>
+    <script src="../js/components/header.js" defer></script>
+    <script src="../js/components/footer.js" defer></script>
+    <script type="module" src="../js/components/modals.js" defer></script>
+</head>
+
+<body onload="renderContent()">
+    <div class="container">
+        <div class="wrapper">
+            <div class="header"></div>
+            <main class="main-content"><input type="text" id="searchBar" class="searchBar"
+                    placeholder="Search Bar for custom output" />
+                <div class="filter-wrapper">
+                    <div class="filterDiv" id="timeDiv">
+                        <select class="filterSelects" id="filterTime">
+                            <option value="" selected disabled>Sort by time</option>
+                            <option value="asc">Earliest first</option>
+                            <option value="desc">Latest first</option>
+                        </select>
+                        <button id="timeReset"><img src="../assets/images/reset_icon_by_inkubators.png"
+                                alt="Reset"></button>
+                    </div>
+                    <div class="filterDiv" id="specialtyDiv">
+                        <select class="filterSelects" id="filterSpecialty">
+                            <option value="" selected disabled>Filter by specialty</option>
+                            <option value="cardiology">Cardiology</option>
+                            <option value="dermatology">Dermatology</option>
+                            <option value="neurology">Neurology</option>
+                        </select>
+                        <button id="specialtyReset"><img src="../assets/images/reset_icon_by_inkubators.png"
+                                alt="Reset"></button>
+                    </div>
+                </div>
+                <div id="content">
+                    <div class="doctorCard">
+                        <div class="cardInfo">
+                            <span>info1 about doctor</span>
+                            <span>info2 about Appointment</span>
+                        </div>
+                        <div class="card-actions">
+                            <button class="cardButton">Book Now</button>
+                        </div>
+                    </div>
+                    <div class="doctorCard">
+                        <div class="cardInfo">
+                            <span>info1 about doctor</span>
+                            <span>info2 about Appointment</span>
+                        </div>
+                        <div class="card-actions">
+                            <button class="cardButton">Book Now</button>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="cardInfo"></div>
+                        <button class="cardButton"></button>
+                    </div>
+                    <div>
+                        <div class="cardInfo"></div>
+                        <button class="cardButton"></button>
+                    </div>
+                </div>
+            </main>
+            <div class="footer"></div>
+        </div>
+    </div>
+    <div class="modal-backdrop" id="backdrop"></div>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <div id="modal-body">
+                <button id="confirmBookingBtn">Confirm Booking</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="../js/patientDashboard.js" defer></script>
+    <script>
+        document.querySelectorAll(".cardButton").forEach(button => {
+            button.addEventListener("click", e => {
+                const ripple = document.createElement("div");
+                ripple.className = "ripple-overlay";
+                ripple.style.left = `${e.clientX}px`;
+                ripple.style.top = `${e.clientY}px`;
+                document.body.appendChild(ripple);
+
+                void ripple.offsetWidth; /* why is this so important? -> forces browser repaint */
+
+                // Trigger Animation
+                ripple.classList.add("active");
+
+                // Nach Animation entfernen
+                setTimeout(() => ripple.remove(), 700);
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,31 +1,65 @@
-* { 
-    margin: 0; 
-    padding: 0; 
+* {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
-html, body, .container { 
+html,
+body,
+.container {
     height: 100%;
-    font-family: Arial, sans-serif; 
+    font-family: Arial, sans-serif;
 
 }
 
 @media (max-width: 768px) {
-  html {
-    font-size: 15px;
-  }
+    html {
+        font-size: 15px;
+    }
 }
 
 @media (max-width: 480px) {
-  html {
-    font-size: 13px;
-  }
+    html {
+        font-size: 13px;
+    }
 }
 
-.wrapper { 
+.wrapper {
     height: 100%;
     display: flex;
     flex-direction: column;
+}
+
+@keyframes modalSlide {
+    from {
+        top: 200%;
+    }
+
+    to {
+        top: 50%;
+    }
+}
+
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 999;
+    /* modal is 1000 */
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+.modal-backdrop.active {
+    /* control opacity via js because removing the class via js doesnt trigger opacity transition but sets to 0 immediately */
+    visibility: visible;
+    pointer-events: auto; 
 }
 
 #modal {
@@ -33,41 +67,53 @@ html, body, .container {
     flex-direction: column;
     justify-content: center;
 
-    display: none;
-    /* add box shadow */
-    transition: display 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
 
-    background-color: #006159;
-    position: absolute;
+    background-color: white;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 
-    height: 85vh;
-    width: 85vw;
+    height: 50vh;
+    width: 50vw;
 
     border-radius: 10px;
     border: 2px solid white;
 
-    padding: 1rem;
+    padding: 2rem;
+    z-index: 1000;
+
+    transition: opacity 0.5s ease;
+}
+
+#modal.active {
+    animation: modalSlide 0.5s ease;
+}
+
+#modal.hide {
+    animation: modalSlide 0.5s ease reverse forwards; /* forwards because its reversed. keeps top at 200% after animation ends */
 }
 
 #closeModal {
     position: absolute;
-    padding: 1rem;
-    top: 0;
-    right: 0.4rem;
+    padding: 0 0.5rem;
+    top: 0.5rem;
+    right: 0.5rem;
     font-size: 2rem;
-    color: white;
+    color: #015c5d;
     cursor: pointer;
     z-index: 10;
+    border-radius: 50%;
 
     background: transparent;
     border: none;
 }
 
 #closeModal:active {
-    color: lightgray;
+    color: black;
 }
 
 #modal-body {
@@ -77,14 +123,34 @@ html, body, .container {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 1rem;
+    gap: 2rem;
     text-align: center;
 }
 
-#modal-body > * {
-    min-width: 20rem;
+#modal-body>* {
+    width: 90%;
+    padding: 1rem;
+    border-radius: 10px;
+    text-align: center;
+    outline: none;
+    border: 2px solid lightgray;
+    transition: border-color 0.3s ease, filter 0.3s ease;
 }
 
+#modal-body>*:hover {
+    border-color: #017d7e;
+}
+
+#modal-body button {
+    background-color: #017d7e;
+    color: white;
+    margin-top: auto;
+    font-size: 1.5em;
+}
+
+#modal-body button:hover {
+    filter: brightness(1.2);
+}
 
 .main-content {
     padding: 2rem;
@@ -104,7 +170,7 @@ html, body, .container {
     background: fixed no-repeat center/cover url("../images/health-still-life-with-copy-space.jpg");
 }
 
-.main-content > * {
+.main-content>* {
     margin-top: 2rem;
 }
 
@@ -118,9 +184,10 @@ html, body, .container {
     align-items: flex-start;
 }
 
-#content > div {
+#content>div {
     flex: 1 1 20rem;
     min-width: 20rem;
+    max-width: 30rem;
     height: 13rem;
     border-radius: 10px;
     text-align: center;
@@ -136,7 +203,7 @@ html, body, .container {
 
 }
 
-.filters {
+.filter-wrapper {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
@@ -145,7 +212,7 @@ html, body, .container {
     align-items: flex-start; */
 }
 
-.filterDiv > * {
+.filterDiv>* {
     height: 2rem;
     border-radius: 10px;
 }
@@ -177,7 +244,7 @@ html, body, .container {
     gap: 0.3rem;
 }
 
-.filters > * {
+.filter-wrapper>* {
     margin-top: 0.5rem;
 }
 
@@ -188,25 +255,26 @@ html, body, .container {
     background-color: #015c5d;
     color: white;
     border: none;
-    margin-left: auto; /* pushes element to the right */
+    margin-left: auto;
+    /* pushes element to the right */
     transition: background-color 0.3s ease;
 }
 
 #adminBtn:hover {
-  background-color: #017d7e;
-  cursor: pointer;
+    background-color: #017d7e;
+    cursor: pointer;
 }
 
 #adminBtn:active {
-  background-color: #015c5d;
+    background-color: #015c5d;
+    transition: none;
 }
 
 #searchBar:hover,
 #searchBar:focus,
-#sortTime:hover,
+#filterTime:hover,
 #filterSpecialty:hover,
 .filterDiv button:hover,
-#content > div:hover {
+#content>div:hover {
     border-color: #006159;
 }
-
