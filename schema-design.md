@@ -15,9 +15,9 @@ Notes:
 ### Table: patients
 - id: INT, Primary Key, Auto Increment
 - full_name: VARCHAR(100), Not Null
-- date_of_birth: DATE, Not Null
-- biological_gender: VARCHAR(10) (Male, Female), Not Null
-- insurer: VARCHAR(50), Not Null
+- date_of_birth: DATE
+- biological_gender: VARCHAR(10) (Male, Female)
+- insurer: VARCHAR(50)
 - email: VARCHAR(100), Not Null
 - password_hash: VARCHAR(100), Not Null
 - phone_number: VARCHAR(10), Not Null
@@ -40,7 +40,7 @@ Notes:
 - email: VARCHAR(100), Not Null
 - password_hash: VARCHAR(100), Not Null
 - phone_number: VARCHAR(10), Not Null
-- address: VARCHAR(255), Not Null
+- address: VARCHAR(255)
 - active: BOOLEAN, Default TRUE
 
 Notes:
