@@ -122,7 +122,8 @@ window.loginPatient = async function () {
       console.log(result);
       selectRole('loggedPatient');
       localStorage.setItem('token', result.token)
-      window.location.href = '/pages/loggedPatientDashboard.html';
+      // window.location.href = '/pages/loggedPatientDashboard.html';
+      // this is already done in render.js upon role selection
     } else {
       alert('❌ Invalid credentials!');
     }

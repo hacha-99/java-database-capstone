@@ -1,5 +1,97 @@
 <!-- doctorDashboard.html -->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Dashboard</title>
+    <link rel="icon" th:href="@{/assets/images/logo/logo.png}" type="image/png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" th:href="@{/assets/css/adminDashboard.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/doctorDashboard.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}">
+
+    <script th:src="@{/js/render.js}" defer></script>
+    <script th:src="@{/js/util.js}" defer></script>
+
+    <script type="module" th:src="@{/js/components/header.js}" defer></script>
+    <script th:src="@{/js/components/footer.js}" defer></script>
+    <!-- <script type="module" th:src="@{/js/components/patientRows.js}" defer></script>
+    <script type="module" th:src="@{/js/components/modals.js}"></script> -->
+
+    <!-- <script type="module" th:src="@{/js/services/patientServices.js}" defer></script> -->
+</head>
+
+<body onload="renderContent()">
+    <div class="container">
+        <div class="wrapper">
+            <div id="header">
+                <!-- dynamic -->
+            </div>
+            <main class="main-content">
+                <input type="text" id="searchBar" placeholder="Search patient by name..." />
+                <div class="filter-wrapper">
+                    <div class="filterDiv" id="dateDiv">
+                        <input type="date" id="date-picker" />
+                        <button id="dateReset"><img th:src="@{/assets/images/reset_icon_by_inkubators.png}"
+                                alt="Reset"></button>
+                    </div>
+                    <div class="filterDiv" id="todayDiv">
+                        <button id="today-btn">Today’s Appointments</button>
+                    </div>
+                </div>
+                <div class="table-wrapper">
+                    <!-- wrap table to avoid unexpected behavior with display property -->
+                    <p class="table-header">Patient Information</p>
+                    <table id="patientTable">
+                        <thead>
+                            <tr>
+                                <th scope="col">Patient ID</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Phone</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Prescription</th>
+                            </tr>
+                        </thead>
+                        <tbody id="patientTableBody">
+                            <!-- dynamic -->
+                            <!-- <tr>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td>4</td>
+                                <td><button class="prescription-btn"><img
+                                            th:src="@{/assets/images/prescription_icon_by_Freepik.png}"
+                                            alt="Prescription" /></button></td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>6</td>
+                                <td>7</td>
+                                <td>8</td>
+                                <td>8</td>
+                            </tr>
+                            <tr id="noPatientRecord">
+                                <td colspan="5">No results.</td>
+                            </tr> -->
+                        </tbody>
+                    </table>
+                </div>
+            </main>
+            <div id="footer">
+                <!-- dynamic -->
+            </div>
+        </div>
+    </div>
+    <p id="message"></p>
+    <script type="module" th:src="@{/js/doctorDashboard.js}" defer></script>
+</body>
+
+</html>
 <!-- 
 Step-by-Step Explanation of `doctorDashboard.html`
 This file defines the Doctor Dashboard interface, allowing doctors to view and manage their patient appointments, search records, and access patient prescriptions.
