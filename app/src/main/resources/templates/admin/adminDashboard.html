@@ -17,9 +17,12 @@
     <script th:src="@{/js/render.js}" defer></script>
     <script th:src="@{/js/util.js}" defer></script>
 
-    <script type="module" th:src="@{/js/components/header.js}" defer></script>
+    <script th:src="@{/js/components/header.js}" defer></script>
     <script th:src="@{/js/components/footer.js}" defer></script>
-    <!-- <script type="module" th:src="@{/js/components/modals.js}" defer></script> -->
+    <!-- <script type="module" th:src="@{/js/components/modals.js}"></script> -->
+    <script type="module" th:src="@{/js/adminDashboard.js}"></script>
+    <!-- <script type="module" th:src="@{/js/components/doctorCard.js}"></script>
+    these are imported in adminDashboard.js-->
 </head>
 
 <body onload="renderContent()">
@@ -71,8 +74,6 @@
 
         </div>
     </div>
-    <script type="module" th:src="@{/js/adminDashboard.js}" defer></script>
-    <script type="module" th:src="@{/js/components/doctorCard.js}" defer></script>
 </body>
 
 </html>

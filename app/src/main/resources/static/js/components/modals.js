@@ -1,5 +1,5 @@
 // modals.js
-export function openModal(type) {
+export function openModal(type, callback) {
   let modalContent = '';
   if (type === 'addDoctor') {
     modalContent = `
@@ -80,22 +80,22 @@ export function openModal(type) {
   };
 
   if (type === "patientSignup") {
-    document.getElementById("signupBtn").addEventListener("click", signupPatient);
+    document.getElementById("signupBtn").addEventListener("click", callback);
   }
 
   if (type === "patientLogin") {
-    document.getElementById("loginBtn").addEventListener("click", loginPatient);
+    document.getElementById("loginBtn").addEventListener("click", callback);
   }
 
   if (type === 'addDoctor') {
-    document.getElementById('saveDoctorBtn').addEventListener('click', adminAddDoctor);
+    document.getElementById('saveDoctorBtn').addEventListener('click', callback);
   }
 
   if (type === 'adminLogin') {
-    document.getElementById('adminLoginBtn').addEventListener('click', adminLoginHandler);
+    document.getElementById('adminLoginBtn').addEventListener('click', callback);
   }
 
   if (type === 'doctorLogin') {
-    document.getElementById('doctorLoginBtn').addEventListener('click', doctorLoginHandler);
+    document.getElementById('doctorLoginBtn').addEventListener('click', callback);
   }
 }

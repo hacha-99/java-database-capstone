@@ -8,7 +8,7 @@
  * - Easily switchable for different environments (development, staging, production).
  * 
  * Example usage:
- *   fetch(`${API_BASE_URL}/appointments`)
+ *   fetch(`${API_BASE_URL}/api/appointments`)
  */
 
-export const API_BASE_URL = "http://localhost:8080/api";
+export const API_BASE_URL = "http://localhost:8080";
