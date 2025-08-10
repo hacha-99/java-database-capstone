@@ -52,7 +52,7 @@ export function createDoctorCard(doctor) {
     bookNow.classList.add("cardButton");
     bookNow.textContent = "Book Now";
     bookNow.addEventListener("click", () => {
-      // alert("You need to login first.");
+      alert("❌ You need to login first.");
       openModal("patientLogin", window.loginPatient);
     });
     actionsDiv.appendChild(bookNow);

@@ -119,7 +119,7 @@ window.loginPatient = async function () {
       const result = await response.json();
       console.log(result);
       selectRole('loggedPatient');
-      localStorage.setItem('token', result.token)
+      localStorage.setItem('token', result.token);
       // window.location.href = '/pages/loggedPatientDashboard.html';
       // this is already done in render.js upon role selection
     } else {
@@ -128,7 +128,7 @@ window.loginPatient = async function () {
   }
   catch (error) {
     alert("❌ Failed to Login : ", error);
-    console.log("Error :: loginPatient :: ", error)
+    console.log("Error :: loginPatient :: ", error);
   }
 
 
