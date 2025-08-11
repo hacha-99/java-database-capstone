@@ -21,7 +21,6 @@ export function openModal(type, callback) {
                         <option value="oncologist">Oncologist</option>
                         <option value="gastroenterologist">Gastroenterologist</option>
                         <option value="general">General Physician</option>
-
         </select>
         <input type="email" id="doctorEmail" placeholder="Email" class="input-field">
         <input type="password" id="doctorPassword" placeholder="Password" class="input-field">
@@ -34,7 +33,7 @@ export function openModal(type, callback) {
               <label><input type="checkbox" name="availability" value="11:00-12:00"> 11:00 AM - 12:00 PM</label>
               <label><input type="checkbox" name="availability" value="12:00-13:00"> 12:00 PM - 1:00 PM</label>
           </div>
-        </div>
+        </label>
         <button class="dashboard-btn" id="saveDoctorBtn">Save</button>
       `;
   } else if (type === 'patientLogin') {

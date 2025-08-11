@@ -39,7 +39,7 @@ export function createDoctorCard(doctor) {
     removeBtn.addEventListener("click", async (e) => {
       const token = localStorage.getItem("token");
       const response = await deleteDoctor(doctor.id, token);
-      if (response.success) { // TODO does response have "success"? Usable like this?
+      if (response.success) {
         // triggerMessage(`Successfully deleted Dr. ${doctor.name}.`, "green");
         card.style.opacity = "0";
         setTimeout(() => card.remove(), 300);
