@@ -8,7 +8,7 @@ import { patientSignup, patientLogin } from './services/patientServices.js';
 
 
 document.addEventListener("DOMContentLoaded", () => {
-  loadDoctorCards();
+  // loadDoctorCards(); this is already called by doctorCard -> import loggedPatient.js
 });
 
 document.addEventListener("DOMContentLoaded", () => {
