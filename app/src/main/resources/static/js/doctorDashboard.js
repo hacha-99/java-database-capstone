@@ -15,10 +15,10 @@ attachFilterListeners();
 
 function loadAppointments() {
   getAllAppointments(selectedDate, patient, token)
-    .then(appointments => {
+    .then(response => {
       tableBody.replaceChildren(); // empties innerHTML
-      if (appointments.length > 0) {
-        appointments.forEach(app => {
+      if (response.appointments.length > 0) {
+        response.appointments.forEach(app => {
           // TODO TEST: can createPatientRow use app.patient or is manually constructed patient object necessary?
           tableBody.appendChild(createPatientRow(app.patient, app.id, app.doctor.id));
         });
@@ -37,18 +37,18 @@ function attachFilterListeners() {
     e.target.disabled = true;
     selectedDate = (new Date()).toISOString().split("T")[0];
     document.querySelector("#date-picker").value = selectedDate;
-    await loadAppointments();
+    loadAppointments();
     e.target.disabled = false;
   });
 
   document.querySelector("#date-picker").addEventListener("change", async e => {
     selectedDate = e.target.value;
-    await loadAppointments();
+    loadAppointments();
   });
 
   document.querySelector("#searchBar").addEventListener("input", async e => {
     const searchbarValue = e.target.value.trim();
     patientName = searchbarValue !== "" ? searchbarValue : null;
-    await loadAppointments();
+    loadAppointments();
   });
 }

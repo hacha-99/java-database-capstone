@@ -8,5 +8,7 @@ import java.util.List;
 
 @Repository
 public interface PrescriptionRepository extends MongoRepository<Prescription, String> {
-    List<Prescription> findByAppointmentId(Long appointmentId);
+    List<Prescription> findByAppointmentId(Long appointmentId); 
+    
+    boolean existsByAppointmentId(Long appointmentId);
 }

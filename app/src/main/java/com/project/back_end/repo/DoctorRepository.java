@@ -10,15 +10,17 @@ import java.util.List;
 
 @Repository
 public interface DoctorRepository extends JpaRepository<Doctor, Long> {
-      Doctor findByEmail(String email);
+    Doctor findByEmail(String email);
 
-      @Query("SELECT d FROM Doctor d WHERE LOWER(d.name) LIKE LOWER(CONCAT('%', :name, '%'))")
-      List<Doctor> findByNameLike(@Param("name") String name);
+    boolean existsByEmail(String email);
 
-      @Query("SELECT d FROM Doctor d WHERE LOWER(d.name) LIKE LOWER(CONCAT('%', :name, '%')) AND LOWER(d.specialty) = LOWER(:specialty)")
-      List<Doctor> findByNameContainingIgnoreCaseAndSpecialtyIgnoreCase(
-                  @Param("name") String name,
-                  @Param("specialty") String specialty);
+    @Query("SELECT d FROM Doctor d WHERE LOWER(d.name) LIKE LOWER(CONCAT('%', :name, '%'))")
+    List<Doctor> findByNameLike(@Param("name") String name);
 
-      List<Doctor> findBySpecialtyIgnoreCase(String specialty);
+    @Query("SELECT d FROM Doctor d WHERE LOWER(d.name) LIKE LOWER(CONCAT('%', :name, '%')) AND LOWER(d.specialty) = LOWER(:specialty)")
+    List<Doctor> findByNameContainingIgnoreCaseAndSpecialtyIgnoreCase(
+            @Param("name") String name,
+            @Param("specialty") String specialty);
+
+    List<Doctor> findBySpecialtyIgnoreCase(String specialty);
 }

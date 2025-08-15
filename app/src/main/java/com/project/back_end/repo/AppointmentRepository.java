@@ -73,7 +73,7 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long> 
                   @Param("patientId") Long patientId,
                   @Param("status") int status);
 
-      @Modifying
-      @Transactional
-      void updateStatus(int status, long id);
+    //   @Modifying
+    //   @Transactional
+    //   void updateStatus(int status, long id);
 }

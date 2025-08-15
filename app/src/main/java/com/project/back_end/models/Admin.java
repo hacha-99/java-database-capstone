@@ -13,6 +13,7 @@ public class Admin {
     private Long id;
 
     @NotNull(message = "Username cannot be null")
+    @Column(unique = true)
     private String username;
 
     @NotNull
@@ -20,6 +21,7 @@ public class Admin {
     private String password;
 
     @Email(message = "Email should be valid")
+    @Column(unique = true)
     private String email;
 
     public Admin() {
