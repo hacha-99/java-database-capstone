@@ -19,8 +19,14 @@ function loadAppointments() {
       tableBody.replaceChildren(); // empties innerHTML
       if (response.appointments.length > 0) {
         response.appointments.forEach(app => {
-          // TODO TEST: can createPatientRow use app.patient or is manually constructed patient object necessary?
-          tableBody.appendChild(createPatientRow(app.patient, app.id, app.doctor.id));
+          const patient = {
+            id: app.patientId,
+            name: app.patientName,
+            email: app.patientEmail,
+            phone: app.patientPhone,
+            address: app.patientAddress
+          }
+          tableBody.appendChild(createPatientRow(patient, app.id, app.doctor.id));
         });
       }
       else {

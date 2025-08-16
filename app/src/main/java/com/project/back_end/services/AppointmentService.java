@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.project.back_end.DTO.AppointmentDTO;
 import com.project.back_end.models.Appointment;
 import com.project.back_end.models.Doctor;
 import com.project.back_end.models.Patient;
@@ -167,7 +169,7 @@ public class AppointmentService {
                         date.plusDays(1).atStartOfDay());
             }
 
-            response.put("appointments", apps);
+            response.put("appointments", apps.stream().map(app -> mapToDTO(app)).collect(Collectors.toList()));
             return ResponseEntity.ok(response);
         } catch (Exception e) {
             logger.error("Exception in getAppointments", e);
@@ -182,4 +184,20 @@ public class AppointmentService {
     // appointmentRepository.updateStatus(status, id);
     // return ResponseEntity.ok(Map.of("message", "Appointment status updated"));
     // }
+
+    public static AppointmentDTO mapToDTO(Appointment app) {
+        Patient patient = app.getPatient();
+        Doctor doctor = app.getDoctor();
+        return new AppointmentDTO(
+                app.getId(),
+                doctor.getId(),
+                doctor.getName(),
+                patient.getId(),
+                patient.getName(),
+                patient.getEmail(),
+                patient.getPhone(),
+                patient.getAddress(),
+                app.getAppointmentTime(),
+                app.getStatus());
+    }
 }

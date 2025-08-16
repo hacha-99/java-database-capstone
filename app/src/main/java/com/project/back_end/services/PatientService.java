@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.project.back_end.models.Appointment;
-import com.project.back_end.models.Doctor;
 import com.project.back_end.models.Patient;
 import com.project.back_end.repo.AppointmentRepository;
 import com.project.back_end.repo.PatientRepository;
@@ -54,11 +53,13 @@ public class PatientService {
     public ResponseEntity<Map<String, Object>> getPatientAppointment(Long id, String token) {
         try {
             String email = tokenService.extractEmail(token);
-            if (id != patientRepository.findByEmail(email).getId())
+            Patient patient = patientRepository.findByEmail(email);
+            if (patient == null || id != patient.getId())
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                        .body(Map.of("appointments", Collections.<Appointment>emptyList()));
+                        .body(Map.of("appointments", Collections.<AppointmentDTO>emptyList()));
 
-            List<AppointmentDTO> asDTO = appointmentRepository.findByPatientId(id).stream().map(app -> mapToDTO(app))
+            List<AppointmentDTO> asDTO = appointmentRepository.findByPatientId(id).stream()
+                    .map(app -> AppointmentService.mapToDTO(app))
                     .collect(Collectors.toList());
 
             return ResponseEntity.ok(Map.of("appointments", asDTO));
@@ -77,12 +78,12 @@ public class PatientService {
             List<AppointmentDTO> filteredApps;
             if (condition.equalsIgnoreCase("past")) {
                 filteredApps = apps.stream().filter(app -> app.getAppointmentTime().isBefore(LocalDateTime.now()))
-                        .map(app -> mapToDTO(app))
+                        .map(app -> AppointmentService.mapToDTO(app))
                         .collect(Collectors.toList());
 
             } else if (condition.equalsIgnoreCase("future")) {
                 filteredApps = apps.stream().filter(app -> app.getAppointmentTime().isAfter(LocalDateTime.now()))
-                        .map(app -> mapToDTO(app))
+                        .map(app -> AppointmentService.mapToDTO(app))
                         .collect(Collectors.toList());
 
             } else {
@@ -100,8 +101,10 @@ public class PatientService {
     @Transactional
     public ResponseEntity<Map<String, Object>> filterByDoctor(String name, Long patientId) {
         try {
+            List<AppointmentDTO> apps = appointmentRepository.filterByDoctorNameAndPatientId(name, patientId).stream()
+                    .map(app -> AppointmentService.mapToDTO(app)).collect(Collectors.toList());
             return ResponseEntity
-                    .ok(Map.of("appointments", appointmentRepository.filterByDoctorNameAndPatientId(name, patientId)));
+                    .ok(Map.of("appointments", apps));
         } catch (Exception e) {
             logger.error("Exception in filterByDoctor", e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -118,12 +121,12 @@ public class PatientService {
 
             if (condition.equalsIgnoreCase("past")) {
                 filteredApps = apps.stream().filter(app -> app.getAppointmentTime().isBefore(LocalDateTime.now()))
-                        .map(app -> mapToDTO(app))
+                        .map(app -> AppointmentService.mapToDTO(app))
                         .collect(Collectors.toList());
 
             } else if (condition.equalsIgnoreCase("future")) {
                 filteredApps = apps.stream().filter(app -> app.getAppointmentTime().isAfter(LocalDateTime.now()))
-                        .map(app -> mapToDTO(app))
+                        .map(app -> AppointmentService.mapToDTO(app))
                         .collect(Collectors.toList());
 
             } else {
@@ -151,21 +154,5 @@ public class PatientService {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(Map.of("message", "Failed to get patient details."));
         }
-    }
-
-    private AppointmentDTO mapToDTO(Appointment app) {
-        Patient patient = app.getPatient();
-        Doctor doctor = app.getDoctor();
-        return new AppointmentDTO(
-                app.getId(),
-                doctor.getId(),
-                doctor.getName(),
-                patient.getId(),
-                patient.getName(),
-                patient.getEmail(),
-                patient.getPhone(),
-                patient.getAddress(),
-                app.getAppointmentTime(),
-                app.getStatus());
     }
 }
