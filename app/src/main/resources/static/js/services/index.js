@@ -14,10 +14,10 @@ window.onload = () => {
 // api call to login admin
 window.adminLoginHandler = async function () {
   try {
-    const email = document.querySelector("#email").value.trim();
+    const username = document.querySelector("#username").value.trim();
     const password = document.querySelector("#password").value.trim();
 
-    if (email === "") throw new Error("Enter a valid username.");
+    if (username === "") throw new Error("Enter a valid username.");
     if (password === "") throw new Error("Enter a valid password.");
 
     const admin = { username, password };
@@ -54,7 +54,7 @@ window.doctorLoginHandler = async function () {
     if (email === "") throw new Error("Enter a valid username.");
     if (password === "") throw new Error("Enter a valid password.");
 
-    const doctor = { username, password };
+    const doctor = { email, password };
 
     const response = await fetch(`${DOCTOR_API}/login`, {
       method: "POST",
