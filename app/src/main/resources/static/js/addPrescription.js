@@ -37,12 +37,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             // Now, check if the prescription exists in the response and access it from the array
             if (response.prescription && response.prescription.length > 0) {
-                // TODO: ADJUST THIS AND OPTIONALLY STYLES TO FIT INTENDED PRESCRIPTION DOCUMENT DESIGN IN MONGODB
                 const existingPrescription = response.prescription[0]; // Access first prescription object
                 patientNameInput.value = existingPrescription.patientName || YOU;
-                medicinesInput.value = existingPrescription.medication || "";
-                dosageInput.value = existingPrescription.dosage || "";
-                notesInput.value = existingPrescription.doctorNotes || "";
+                // medicinesInput.value = existingPrescription.medication || "";
+                // dosageInput.value = existingPrescription.dosage || "";
+                // notesInput.value = existingPrescription.doctorNotes || "";
+                medicinesInput.value = existingPrescription.medication.join(";\n") || YOU;
+                dosageInput.value = existingPrescription.medication.map(med => `${med.name}: ${med.dosage}`).join(";\n") || "";
+                notesInput.value = existingPrescription.medication.map(med => `${med.name}: ${med.doctorNotes}`).join(";\n") || "";
             }
 
         } catch (error) {
@@ -61,11 +63,38 @@ document.addEventListener('DOMContentLoaded', async () => {
     savePrescriptionBtn.addEventListener('click', async (e) => {
         e.preventDefault();
 
+        if(medicinesInput.value.length === 0 || dosageInput.value.length === 0){
+            alert("❌ Enter prescription with correct format.");
+            return;
+        }
+        let medication = [];
+        const dosages = dosageInput.value.split(";");
+        const doctorNotes = notesInput.value.split(";");
+
+        let counter = 0;
+        medicinesInput.value.split(";").forEach(medicineName => {
+            medication.push(
+                { 
+                    name: medicineName.trim(),
+                    dosage: dosages[counter].trim()
+                })
+            counter++;
+        });
+        counter = 0;
+
+        doctorNotes.forEach(note =>{
+            let found = medication.find(med => med.name === note.split(":")[0].trim());
+            if(found){
+                found.doctorNotes = note.split(":")[1].trim();
+            } else {
+                alert("❌ Medicine name across fields does not match");
+                return;
+            }
+        });
+
         const prescription = {
             patientName: patientNameInput.value,
-            medication: medicinesInput.value,
-            dosage: dosageInput.value,
-            doctorNotes: notesInput.value,
+            medication,
             appointmentId
         };
 

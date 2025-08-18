@@ -30,15 +30,15 @@
                         <input type="text" id="patientName" disabled>
 
                         <label for="medicines">Medicine Names</label>
-                        <input type="text" id="medicines" placeholder="e.g. Paracetamol, Vitamin C" required>
+                        <input type="text" id="medicines" placeholder="e.g. Paracetamol; Vitamin C (separate with semicolon)" required>
 
                         <label for="dosage">Dosage Instructions</label>
                         <textarea id="dosage" rows="3"
-                            placeholder="e.g - Paracetamol"></textarea>
+                            placeholder="e.g Paracetamol: 400mg (separate with semicolon)"></textarea>
 
-                        <label for="notes">Additional Notes</label>
+                        <label for="notes">Additional Notes (optional)</label>
                         <textarea id="notes" rows="3"
-                            placeholder="Any precautions or observations (optional)"></textarea>
+                            placeholder="Paracetamol: When in pain, up 1 tablet every 6 hours (separate with semicolon)"></textarea>
 
                         <button type="submit" class="btn-primary" id="savePrescription">Add Prescription</button>
                         <button type="button" onclick="selectRole('doctor')" class="btn-secondary">Cancel</button>
