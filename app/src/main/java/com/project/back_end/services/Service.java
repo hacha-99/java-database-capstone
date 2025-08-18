@@ -30,7 +30,6 @@ public class Service {
     private final DoctorService doctorService;
     private final PatientService patientService;
 
-
     private static final Logger logger = LoggerFactory.getLogger(Service.class);
 
     public Service(TokenService tokenService, AdminRepository adminRepository, DoctorRepository doctorRepository,
@@ -43,6 +42,7 @@ public class Service {
         this.patientService = patientService;
     }
 
+    // calls tokenservice to validate token
     public ResponseEntity<Map<String, String>> validateToken(String token, String user) {
         try {
             boolean tokenValid = tokenService.validateToken(token, user);
@@ -57,6 +57,7 @@ public class Service {
         }
     }
 
+    // checks admin login credentials
     public ResponseEntity<Map<String, String>> validateAdmin(Admin receivedAdmin) {
         try {
             Admin admin = adminRepository.findByUsername(receivedAdmin.getUsername());
@@ -76,6 +77,7 @@ public class Service {
         }
     }
 
+    // wrap all filters in one method and check whether values are provided
     public Map<String, Object> filterDoctor(String name, String specialty, String time) {
         try {
             boolean hasName = name != null && !name.isBlank();
@@ -105,6 +107,7 @@ public class Service {
         }
     }
 
+    // check whether appointment is available
     public int validateAppointment(Appointment appointment) {
         try {
             Doctor doctor = doctorRepository.findByEmail(appointment.getDoctor().getEmail());
@@ -119,7 +122,7 @@ public class Service {
                             DateTimeFormatter.ofPattern("HH:mm")))
                     .anyMatch(time -> time.equals(appointment.getAppointmentTimeOnly()));
 
-            if(slotAvailable){
+            if (slotAvailable) {
                 return 1;
             }
             return 0;
@@ -129,14 +132,15 @@ public class Service {
         }
     }
 
-    public boolean validatePatient(Patient patient){
+    // checks if patient already exists
+    public boolean validatePatient(Patient patient) {
         try {
             Patient existingPatient = patientRepository.findByEmailOrPhone(patient.getEmail(), patient.getPhone());
-            if(existingPatient == null)
+            if (existingPatient == null)
                 return true;
             return false;
         } catch (Exception e) {
-            logger.error("EXception in validatePatient", e);
+            logger.error("Exception in validatePatient", e);
             return false;
         }
     }
@@ -161,7 +165,8 @@ public class Service {
         }
     }
 
-    public ResponseEntity<Map<String, Object>> filterPatient(String name, String condition, String token){
+    // wrap appointment filters in one method
+    public ResponseEntity<Map<String, Object>> filterPatient(String name, String condition, String token) {
         try {
             Patient patient = patientRepository.findByEmail(tokenService.extractEmail(token));
             if (patient == null)
@@ -171,11 +176,11 @@ public class Service {
             boolean hasName = name != null && !name.isBlank();
             boolean hasCondition = condition != null && !condition.isBlank();
 
-            if(hasName && hasCondition){
+            if (hasName && hasCondition) {
                 return patientService.filterByCondition(condition, patient.getId());
-            } else if(hasName){
+            } else if (hasName) {
                 return patientService.filterByDoctor(name, patient.getId());
-            } else if (hasCondition){
+            } else if (hasCondition) {
                 return patientService.filterByDoctorAndCondition(condition, name, patient.getId());
             } else {
                 return patientService.getPatientAppointment(patient.getId(), token);
@@ -183,7 +188,7 @@ public class Service {
         } catch (Exception e) {
             logger.error("Exception in filterPatient", e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(
-                        (Map.of("message", "Failed to filter patient.")));
+                    (Map.of("message", "Failed to filter patient.")));
         }
     }
 }

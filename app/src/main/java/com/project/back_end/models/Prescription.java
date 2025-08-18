@@ -13,7 +13,7 @@ public class Prescription {
     @Id
     private String id;
 
-    @NotNull
+    @NotBlank
     @Size(min = 3, max = 100)
     private String patientName;
 

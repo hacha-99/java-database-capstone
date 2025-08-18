@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.project.back_end.models.Prescription;
 import com.project.back_end.repo.PrescriptionRepository;
 
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -14,31 +15,38 @@ import org.slf4j.LoggerFactory;
 
 @Service
 public class PrescriptionService {
-    
+
     PrescriptionRepository prescriptionRepository;
 
     private static final Logger logger = LoggerFactory.getLogger(PrescriptionService.class);
 
-    public PrescriptionService(PrescriptionRepository prescriptionRepository){
+    public PrescriptionService(PrescriptionRepository prescriptionRepository) {
         this.prescriptionRepository = prescriptionRepository;
     }
 
-    public ResponseEntity<Map<String, String>> savePrescription(Prescription presc){
+    public ResponseEntity<Map<String, String>> savePrescription(Prescription presc) {
         try {
             prescriptionRepository.save(presc);
             return ResponseEntity.status(HttpStatus.CREATED).body(Map.of("message", "Prescription saved."));
         } catch (Exception e) {
             logger.error("Exception in savePrescription.", e);
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of("message", "Failed to save prescription."));
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(Map.of("message", "Failed to save prescription."));
         }
     }
 
-    public ResponseEntity<Map<String, Object>> getPrescription(Long appointmentId){
+    public ResponseEntity<Map<String, Object>> getPrescription(Long appointmentId) {
         try {
-            return ResponseEntity.ok(Map.of("prescription", prescriptionRepository.findByAppointmentId(appointmentId)));
+            List<Prescription> result = prescriptionRepository.findByAppointmentId(appointmentId);
+            if (!result.isEmpty()) {
+                return ResponseEntity.ok(Map.of("prescription", result));
+            }
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(Map.of("message", "No prescription exists for that appointment"));
         } catch (Exception e) {
             logger.error("Exception in getPrescription.", e);
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of("message", "Failed to get prescription."));
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(Map.of("message", "Failed to get prescription."));
         }
     }
 }

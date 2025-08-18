@@ -14,7 +14,7 @@ public class Patient {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
+    @NotBlank
     @Size(min = 3, max = 100)
     private String name;
 
@@ -23,16 +23,16 @@ public class Patient {
     private LocalDate dob;
 
     @Email
-    @NotNull
+    @NotBlank
     @Column(unique = true)
     private String email;
 
-    @NotNull
+    @NotBlank
     @Size(min = 6, max = 100)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY) // control serialization
     private String password;
 
-    @NotNull
+    @NotBlank
     @Pattern(regexp = "^[0-9]{10}$", message = "Phone number must be 10 digits")
     private String phone;
 
@@ -41,7 +41,7 @@ public class Patient {
     // @NotNull
     private int gender; // 0 = Male, 1 = Female
 
-    @NotNull
+    @NotBlank
     @Size(max = 255)
     private String address;
 

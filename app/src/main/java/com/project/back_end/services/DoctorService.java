@@ -131,6 +131,7 @@ public class DoctorService {
         }
     }
 
+    // check for doctor login credentials
     @Transactional
     public ResponseEntity<Map<String, String>> validateDoctor(Login login) {
         try {

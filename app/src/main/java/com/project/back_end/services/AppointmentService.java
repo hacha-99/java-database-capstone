@@ -123,6 +123,7 @@ public class AppointmentService {
         try {
             Map<String, String> response = new HashMap<>();
 
+            // check if patient or appointment null/empty
             Patient patient = patientRepository.findByEmail(tokenService.extractEmail(token));
             Optional<Appointment> optApp = appointmentRepository.findById(id);
             if (patient == null || optApp.isEmpty()) {
@@ -130,6 +131,7 @@ public class AppointmentService {
                         (Map.of("message", "Patient with given email or appointment with given id does not exist.")));
             }
 
+            // check if id of patient matches with appointment patient id
             Appointment app = optApp.get();
             if (patient.getId() != app.getPatient().getId()) {
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(
@@ -150,6 +152,8 @@ public class AppointmentService {
     public ResponseEntity<Map<String, Object>> getAppointments(String patientName, LocalDate date, String token) {
         try {
             Map<String, Object> response = new HashMap<>();
+
+            // check if doctor exists
             Doctor doc = doctorRepository.findByEmail(tokenService.extractEmail(token));
             if (doc == null) {
                 response.put("message", "Failed to find matching doctor.");
@@ -158,6 +162,7 @@ public class AppointmentService {
 
             String safePatientName = (patientName == null) ? "" : patientName.trim();
 
+            // act depending on whether patientname is empty or not
             List<Appointment> apps;
             if (!safePatientName.isEmpty()) {
                 apps = appointmentRepository.findByDoctorIdAndPatient_NameContainingIgnoreCaseAndAppointmentTimeBetween(
@@ -178,12 +183,17 @@ public class AppointmentService {
         }
     }
 
-    // @Transactional
-    // public ResponseEntity<Map<String, String>> changeStatus(int status, Long id)
-    // {
-    // appointmentRepository.updateStatus(status, id);
-    // return ResponseEntity.ok(Map.of("message", "Appointment status updated"));
-    // }
+    @Transactional
+    public ResponseEntity<Map<String, String>> changeStatus(int status, Long id) {
+        try {
+            appointmentRepository.updateStatus(status, id);
+            return ResponseEntity.ok(Map.of("message", "Appointment status updated"));
+        } catch (Exception e) {
+            logger.error("Exception in changeStatus", e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(Map.of("message", "Failed to change status."));
+        }
+    }
 
     public static AppointmentDTO mapToDTO(Appointment app) {
         Patient patient = app.getPatient();

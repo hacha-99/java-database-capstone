@@ -44,7 +44,7 @@ public class PatientService {
             patientRepository.save(patient);
             return 1;
         } catch (Exception e) {
-            logger.error("Failed to create patient PatientService.createPatient", e);
+            logger.error("Exception in createPatient", e);
             return 0;
         }
     }
@@ -80,7 +80,8 @@ public class PatientService {
                 filteredApps = apps.stream().filter(app -> app.getAppointmentTime().isBefore(LocalDateTime.now()))
                         .map(app -> AppointmentService.mapToDTO(app))
                         .collect(Collectors.toList());
-
+                // stream appointment list, filter the ones that are before/after now and save
+                // as app dto
             } else if (condition.equalsIgnoreCase("future")) {
                 filteredApps = apps.stream().filter(app -> app.getAppointmentTime().isAfter(LocalDateTime.now()))
                         .map(app -> AppointmentService.mapToDTO(app))
@@ -123,7 +124,8 @@ public class PatientService {
                 filteredApps = apps.stream().filter(app -> app.getAppointmentTime().isBefore(LocalDateTime.now()))
                         .map(app -> AppointmentService.mapToDTO(app))
                         .collect(Collectors.toList());
-
+                // stream appointment list, filter the ones that are before/after now and save
+                // as app dto
             } else if (condition.equalsIgnoreCase("future")) {
                 filteredApps = apps.stream().filter(app -> app.getAppointmentTime().isAfter(LocalDateTime.now()))
                         .map(app -> AppointmentService.mapToDTO(app))
