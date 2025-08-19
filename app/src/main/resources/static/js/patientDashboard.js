@@ -53,9 +53,9 @@ function filterDoctorsOnChange() {
   const filterSpecialty = document.getElementById("filterSpecialty").value;
 
 
-  const name = searchBar.length > 0 ? searchBar : null;
-  const time = filterTime.length > 0 ? filterTime : null;
-  const specialty = filterSpecialty.length > 0 ? filterSpecialty : null;
+  const name = searchBar.length > 0 ? searchBar : "";
+  const time = filterTime.length > 0 ? filterTime : "";
+  const specialty = filterSpecialty.length > 0 ? filterSpecialty : "";
 
   filterDoctors(name, time, specialty)
     .then(response => {
