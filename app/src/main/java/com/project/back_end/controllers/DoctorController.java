@@ -136,7 +136,7 @@ public class DoctorController {
 
     // - Handles HTTP GET requests to filter doctors based on name, time, and
     // specialty.
-    @GetMapping("/filter/{name}/{time}/{speciality}")
+    @GetMapping("/filter/{name}/{time}/{specialty}")
     public ResponseEntity<?> filter(@PathVariable String name, @PathVariable String time,
             @PathVariable String specialty) {
         return ResponseEntity.ok(Map.of("doctors", service.filterDoctor(name, specialty, time)));

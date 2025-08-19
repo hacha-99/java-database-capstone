@@ -4,7 +4,7 @@ INSERT INTO doctor (email, name, password, phone, specialty) VALUES
 ('dr.lee@example.com', 'Dr. Sarah Lee', 'leePass987', '555-303-4040', 'Orthopedist'),
 ('dr.wilson@example.com', 'Dr. Tom Wilson', 'w!ls0nPwd', '555-404-5050', 'Pediatrician'),
 ('dr.brown@example.com', 'Dr. Alice Brown', 'brownie123', '555-505-6060', 'Dermatologist'),
-('dr.taylor@example.com', 'Dr. Taylor Grant', 'taylor321', '555-606-7070', 'Cardiologist'),
+('dr.grant@example.com', 'Dr. Taylor Grant', 'taylor321', '555-606-7070', 'Cardiologist'),
 ('dr.white@example.com', 'Dr. Sam White', 'whiteSecure1', '555-707-8080', 'Neurologist'),
 ('dr.clark@example.com', 'Dr. Emma Clark', 'clarkPass456', '555-808-9090', 'Orthopedist'),
 ('dr.davis@example.com', 'Dr. Olivia Davis', 'davis789', '555-909-0101', 'Pediatrician'),

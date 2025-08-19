@@ -13,7 +13,7 @@ public class DashboardController {
     @Autowired
     private TokenService tokenService;
 
-    @GetMapping("admin/dashboard/{token}")
+    @GetMapping("/adminDashboard/{token}")
     public String adminDashboard(@PathVariable String token) {
         if (tokenService.validateToken(token, "admin")) {
             return "admin/adminDashboard";
@@ -23,7 +23,7 @@ public class DashboardController {
         }
     }
 
-    @GetMapping("doctor/dashboard/{token}")
+    @GetMapping("/doctorDashboard/{token}")
     public String doctorDashboard(@PathVariable String token) {
         if (tokenService.validateToken(token, "doctor")) {
             return "doctor/doctorDashboard";

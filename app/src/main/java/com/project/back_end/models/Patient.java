@@ -39,7 +39,7 @@ public class Patient {
     @Min(0)
     @Max(1)
     // @NotNull
-    private int gender; // 0 = Male, 1 = Female
+    private Integer gender; // 0 = Male, 1 = Female
 
     @NotBlank
     @Size(max = 255)
@@ -96,11 +96,11 @@ public class Patient {
         this.phone = phone;
     }
 
-    public int getGender() {
+    public Integer getGender() {
         return gender;
     }
 
-    public void setGender(int gender) {
+    public void setGender(Integer gender) {
         this.gender = gender;
     }
 
