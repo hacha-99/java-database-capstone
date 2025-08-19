@@ -3,6 +3,30 @@ import { API_BASE_URL } from "../config/config.js";
 
 const DOCTOR_API = API_BASE_URL + "/doctor"
 
+export async function getDoctorAvailability(user, doctorId, date, token) {
+    try {
+        const response = await fetch(`${DOCTOR_API}/availability/${user}/${doctorId}/${date}/${token}`, {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                "Content-Type": "application/json"
+            }
+        });
+        if (response.ok) {
+            return (await response.json()).availability;
+        }
+        else {
+            console.error("Failed to fetch detailed information about doctors available times:", response.statusText);
+            return [];
+        }
+    } catch (error) {
+        console.error("Error :: getDoctorAvailability :: ", error);
+        alert("Something went wrong!");
+        // triggerMessage("Error retrieving doctor availability", "red");
+        return [];
+    }
+}
+
 // api call to get list of doctors
 export async function getDoctors() {
     try {
@@ -96,7 +120,12 @@ export async function updateDoctor(doctor, token) {
 
 export async function filterDoctors(name, time, specialty) {
     try {
-        const response = await fetch(`${DOCTOR_API}/filter/${name}/${time}/${specialty}`, {
+        const params = new URLSearchParams();
+        if (name) params.append("name", name);
+        if (time) params.append("time", time);
+        if (specialty) params.append("specialty", specialty);
+
+        const response = await fetch(`${DOCTOR_API}/filter?${params.toString()}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"

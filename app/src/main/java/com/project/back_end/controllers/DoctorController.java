@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.back_end.DTO.Login;
@@ -33,8 +34,6 @@ public class DoctorController {
     @Autowired
     private Service service;
 
-    // TODO: check for usefulness of this for frontend (this is currently not used
-    // at all)"
     // - Handles HTTP GET requests to check a specific doctor’s availability on a
     // given date.
     @GetMapping("/availability/{user}/{doctorId}/{date}/{token}")
@@ -136,10 +135,13 @@ public class DoctorController {
 
     // - Handles HTTP GET requests to filter doctors based on name, time, and
     // specialty.
-    @GetMapping("/filter/{name}/{time}/{specialty}")
-    public ResponseEntity<?> filter(@PathVariable String name, @PathVariable String time,
-            @PathVariable String specialty) {
-        // TODO: What if PathVariables are null or ""? Consider these cases. Make frontend send ""? and adjust here as well accordingly? or use something like "any" or "none"
-        return ResponseEntity.ok(Map.of("doctors", service.filterDoctor(name, specialty, time)));
+    @GetMapping("/filter")
+    public ResponseEntity<?> filter(
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) String time,
+            @RequestParam(required = false) String specialty) {
+
+        return ResponseEntity.ok(Map.of(
+                "doctors", service.filterDoctor(name, specialty, time)));
     }
 }

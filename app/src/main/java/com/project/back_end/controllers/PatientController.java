@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.back_end.DTO.Login;
@@ -81,9 +82,11 @@ public class PatientController {
 
     // - Handles HTTP GET requests to filter a patient's appointments based on
     // specific conditions.
-    @GetMapping("/filter/{condition}/{name}/{token}")
-    public ResponseEntity<?> filterPatientAppointments(@PathVariable String condition, @PathVariable String name,
-            @PathVariable String token) {
+    @GetMapping("/filter")
+    public ResponseEntity<?> filterPatientAppointments(
+            @RequestParam(required = false) String condition,
+            @RequestParam(required = false) String name,
+            @RequestParam(required = true) String token) {
 
         ResponseEntity<Map<String, String>> validation = service.validateToken(token, "patient");
         if (!validation.getStatusCode().is2xxSuccessful()) {

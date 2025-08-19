@@ -79,23 +79,42 @@ export function openModal(type, callback) {
   };
 
   if (type === "patientSignup") {
-    document.getElementById("signupBtn").addEventListener("click", callback);
-    // do this: "click", event => { event.currentTarget.disabled = true; callback(); event.currentTarget.disabled = false; } for all of these 5
+    document.getElementById("signupBtn").addEventListener("click", e => {
+        e.currentTarget.disable = true;
+        callback();
+        e.currentTarget.disable = false;
+    });
   }
 
   if (type === "patientLogin") {
-    document.getElementById("loginBtn").addEventListener("click", callback);
+    document.getElementById("loginBtn").addEventListener("click", e => {
+        e.currentTarget.disable = true;
+        callback();
+        e.currentTarget.disable = false;
+    });
   }
 
   if (type === 'addDoctor') {
-    document.getElementById('saveDoctorBtn').addEventListener('click', callback);
+    document.getElementById('saveDoctorBtn').addEventListener('click', e => {
+        e.currentTarget.disable = true;
+        callback();
+        e.currentTarget.disable = false;
+    });
   }
 
   if (type === 'adminLogin') {
-    document.getElementById('adminLoginBtn').addEventListener('click', callback);
+    document.getElementById('adminLoginBtn').addEventListener('click', e => {
+        e.currentTarget.disable = true;
+        callback();
+        e.currentTarget.disable = false;
+    });
   }
 
   if (type === 'doctorLogin') {
-    document.getElementById('doctorLoginBtn').addEventListener('click', callback);
+    document.getElementById('doctorLoginBtn').addEventListener('click', e => {
+        e.currentTarget.disable = true;
+        callback();
+        e.currentTarget.disable = false;
+    });
   }
 }

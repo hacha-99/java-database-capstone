@@ -23,7 +23,7 @@ export function createDoctorCard(doctor) {
   email.textContent = doctor.email;
 
   const availability = document.createElement("p");
-  availability.textContent = doctor.availableTimes.join(", ");
+  availability.textContent = `Consulting hours: ${doctor.availableTimes.join(", ")}`;
   // puts array elements into string with ", " as a separator
 
   infoDiv.replaceChildren(name, specialization, email, availability);
