@@ -139,6 +139,7 @@ public class DoctorController {
     @GetMapping("/filter/{name}/{time}/{specialty}")
     public ResponseEntity<?> filter(@PathVariable String name, @PathVariable String time,
             @PathVariable String specialty) {
+        // TODO: What if PathVariables are null or ""? Consider these cases. Make frontend send ""? and adjust here as well accordingly? or use something like "any" or "none"
         return ResponseEntity.ok(Map.of("doctors", service.filterDoctor(name, specialty, time)));
     }
 }

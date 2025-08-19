@@ -57,7 +57,7 @@ public class AppointmentController {
         if (bookingResult != 1) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("message", "Invalid booking request."));
         }
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(Map.of("message", "Appointment booked"));
     }
 
     // - Handles HTTP PUT requests to modify an existing appointment.

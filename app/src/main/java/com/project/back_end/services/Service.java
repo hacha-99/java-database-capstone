@@ -110,25 +110,33 @@ public class Service {
     // check whether appointment is available
     public int validateAppointment(Appointment appointment) {
         try {
-            Doctor doctor = doctorRepository.findByEmail(appointment.getDoctor().getEmail());
-            if (doctor == null) {
-                return -1;
-            }
+            Doctor doctor = doctorRepository.findById(appointment.getDoctor().getId()).orElseThrow();
 
+            // checks if doctor generally offers time slot declared in appointment object
             // parse time slots to LocalTime and compare with appointment LocalTime; if
             // there any match -> true
-            boolean slotAvailable = doctor.getAvailableTimes().stream()
+            boolean hasSlot = doctor.getAvailableTimes().stream()
                     .map(slot -> LocalTime.parse(slot.substring(0, 5),
                             DateTimeFormatter.ofPattern("HH:mm")))
                     .anyMatch(time -> time.equals(appointment.getAppointmentTimeOnly()));
 
-            if (slotAvailable) {
+            if (!hasSlot)
+                return 0;
+
+            boolean slotAvailable = doctorService
+                    .getDoctorAvailability(appointment.getDoctor().getId(),
+                            appointment.getAppointmentTime().toLocalDate())
+                    .stream().map(slot -> LocalTime.parse(slot.substring(0, 5),
+                            DateTimeFormatter.ofPattern("HH:mm")))
+                    .anyMatch(time -> time.equals(appointment.getAppointmentTimeOnly()));
+
+            if (hasSlot && slotAvailable) {
                 return 1;
             }
             return 0;
         } catch (Exception e) {
             logger.error("Exception in validateAppointment.", e);
-            return 0;
+            return -1;
         }
     }
 

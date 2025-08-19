@@ -53,7 +53,7 @@ export async function updateAppointment(appointment, token) {
             message: data.message || "Something went wrong"
         };
     } catch (error) {
-        console.error("Error while booking appointment:", error);
+        console.error("Error while updating appointment:", error);
         return {
             success: false,
             message: "Network error. Please try again later."

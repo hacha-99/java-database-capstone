@@ -80,6 +80,7 @@ export function openModal(type, callback) {
 
   if (type === "patientSignup") {
     document.getElementById("signupBtn").addEventListener("click", callback);
+    // do this: "click", event => { event.currentTarget.disabled = true; callback(); event.currentTarget.disabled = false; } for all of these 5
   }
 
   if (type === "patientLogin") {

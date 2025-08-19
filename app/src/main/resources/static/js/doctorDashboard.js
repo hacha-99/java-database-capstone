@@ -40,11 +40,11 @@ function loadAppointments() {
 
 function attachFilterListeners() {
   document.querySelector("#today-btn").addEventListener("click", async e => {
-    e.target.disabled = true;
+    e.currentTarget.disabled = true;
     selectedDate = (new Date()).toISOString().split("T")[0];
     document.querySelector("#date-picker").value = selectedDate;
     loadAppointments();
-    e.target.disabled = false;
+    e.currentTarget.disabled = false;
   });
 
   document.querySelector("#date-picker").addEventListener("change", async e => {

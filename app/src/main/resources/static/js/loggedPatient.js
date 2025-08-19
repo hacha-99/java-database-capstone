@@ -41,6 +41,7 @@ export function showBookingOverlay(e, doctor, patient) {
   const modalApp = document.createElement("div");
   modalApp.classList.add("modalApp");
 
+  // TODO: Use getDoctorAvailability here instead of generally available slots?! implement fetch request in doctorServices.js
   modalApp.innerHTML = `
     <h2>Book Appointment</h2>
     <input class="input-field" type="text" value="${patient.name}" disabled />
@@ -75,7 +76,7 @@ export function showBookingOverlay(e, doctor, patient) {
     const { success, message } = await bookAppointment(appointment, token);
 
     if (success) {
-      alert("Appointment Booked successfully");
+      alert("Appointment booked successfully");
       ripple.remove();
       modalApp.remove();
     } else {
