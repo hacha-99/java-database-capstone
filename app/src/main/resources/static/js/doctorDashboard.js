@@ -1,6 +1,9 @@
+// doctorDashboard.js
+
 import { getAllAppointments } from "./services/appointmentRecordService.js";
 import { createPatientRow } from "./components/patientRows.js";
 // import { triggerMessage } from "./render.js";
+
 
 document.addEventListener("DOMContentLoaded", () => {
   loadAppointments();

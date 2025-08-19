@@ -1,3 +1,5 @@
+// footer.js
+
 function renderFooter() {
   const footer = document.querySelector("#footer");
 

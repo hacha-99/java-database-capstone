@@ -1,4 +1,5 @@
-// loggedPatient.js 
+// loggedPatient.js
+
 import { getDoctors } from './services/doctorServices.js';
 import { createDoctorCard } from './components/doctorCard.js';
 import { filterDoctors, getDoctorAvailability } from './services/doctorServices.js';

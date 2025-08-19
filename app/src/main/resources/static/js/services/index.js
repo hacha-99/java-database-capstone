@@ -1,6 +1,9 @@
+// index.js
+
 import { openModal } from "../components/modals.js";
 import { API_BASE_URL } from "../config/config.js";
 // import { triggerMessage, wrongCredentialsRoutine } from "../render.js";
+
 
 const ADMIN_API = API_BASE_URL + "/admin";
 const DOCTOR_API = API_BASE_URL + "/doctor";

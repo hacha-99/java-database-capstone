@@ -1,6 +1,8 @@
 // patientRecordServices.js
+
 import { getPatientAppointments } from "./services/patientServices.js";
 import { createPatientRecordRow } from './components/patientRecordRow.js';
+
 
 const tableBody = document.getElementById("patientTableBody");
 const token = localStorage.getItem("token");

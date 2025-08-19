@@ -1,4 +1,7 @@
+// addPrescription.js
+
 import { savePrescription, getPrescription } from "./services/prescriptionServices.js";
+
 
 document.addEventListener('DOMContentLoaded', async () => {
     const savePrescriptionBtn = document.getElementById("savePrescription");

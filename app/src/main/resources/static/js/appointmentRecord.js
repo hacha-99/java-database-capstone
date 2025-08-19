@@ -1,6 +1,8 @@
 // appointmentRecord.js
+
 import { getAppointments } from "./components/appointmentRow.js";
 import { getAppointmentRecord } from "./services/appointmentRecordService.js";
+
 
 const tableBody = document.getElementById("patientTableBody");
 const filterSelect = document.getElementById("appointmentFilter");

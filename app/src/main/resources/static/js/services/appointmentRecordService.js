@@ -1,7 +1,9 @@
 // appointmentRecordService.js
-import { API_BASE_URL } from "../config/config.js";
-const APPOINTMENT_API = `${API_BASE_URL}/appointments`;
 
+import { API_BASE_URL } from "../config/config.js";
+
+
+const APPOINTMENT_API = `${API_BASE_URL}/appointments`;
 
 //This is for the doctor to get all the patient Appointments
 export async function getAllAppointments(date, patientName, token) {

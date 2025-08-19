@@ -1,7 +1,9 @@
-// patientServices
-import { API_BASE_URL } from "../config/config.js";
-const PATIENT_API = API_BASE_URL + '/patient'
+// patientServices.js
 
+import { API_BASE_URL } from "../config/config.js";
+
+
+const PATIENT_API = API_BASE_URL + '/patient'
 
 //For creating a patient in db
 export async function patientSignup(data) {
@@ -73,7 +75,12 @@ export async function getPatientAppointments(id, token, user) {
 
 export async function filterAppointments(condition, name, token) {
     try {
-        const response = await fetch(`${PATIENT_API}/filter/${condition}/${name}/${token}`, {
+        const params = new URLSearchParams();
+        if (token) params.append("token", token);
+        if (name) params.append("name", name);
+        if (condition) params.append("condition", condition);
+
+        const response = await fetch(`${PATIENT_API}/filter?${params.toString()}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
