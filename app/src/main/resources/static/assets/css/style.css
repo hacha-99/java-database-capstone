@@ -7,10 +7,36 @@
   align-items: center;
   background-color: #f4f4f4;
   color: #333;
-  padding: 10px 20px;
+  padding: 25px 20px 10px;
   border-bottom: 2px solid #ccc;
   flex-wrap: wrap;
   min-height: 60px;
+}
+
+/* Centers elements within header */
+.header > * {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.headerBtn {
+  background-color: #f4f4f4;
+  color: #333;
+  font-weight: bold;
+  width: fit-content;
+  padding: 10px 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.headerBtn:hover {
+  background-color: #A62B1F;
+  color: #fff;
+}
+
+.logo-section{
+    cursor: pointer;
 }
 
 /* Logo section with image + title */
@@ -36,7 +62,8 @@
 }
 
 /* Nav links styling */
-nav a {
+nav a,
+nav button {
   margin-left: 20px;
   margin-right: 20px;
   text-decoration: none;
@@ -44,7 +71,8 @@ nav a {
   font-weight: bold;
 }
 
-nav a:hover {
+nav a:hover,
+nav button:hover {
   color: #003e3e;
 }
 
@@ -60,7 +88,7 @@ nav a:hover {
     margin-top: 10px;
   }
 
-  nav a {
+  nav a, nav button {
     margin-left: 0;
     margin-right: 10px;
   }
@@ -183,10 +211,17 @@ nav a:hover {
   border-radius: 10px;
   width: 400px;
   position: relative;
+
+  max-height: 95vh;
+  overflow: auto;
 }
 
 .modal-content h2 {
   font-size: 32px;
+}
+
+div#modal-body > :nth-last-child(2){
+    margin-bottom: 30px;
 }
 
 .close {
@@ -260,6 +295,9 @@ nav a:hover {
   background-color: #fff;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease, opacity 300ms linear;
+
+  min-width: 10rem;
+  max-width: 30rem;
 }
 
 .doctor-card:hover {
@@ -284,13 +322,12 @@ nav a:hover {
 }
 
 .card-actions {
-  background-color: #e28282;
-  padding: 10px;
-  text-align: center;
+    background-color: #c21d1d;
+    text-align: center;
 }
 
 .card-actions:hover {
-  background-color: #d26969;
+  background-color: #951616;
 }
 
 .card-actions button {
@@ -299,6 +336,10 @@ nav a:hover {
   color: #fff;
   font-weight: bold;
   cursor: pointer;
+
+  padding: 20px;
+  width: 100%;
+  height: 100%;
 }
 
 .card-actions button:hover {
@@ -315,7 +356,7 @@ span {
   color: #A62B1F;
 }
 
-.searchBar {
+#searchBar {
   height: 30px;
   padding: 20px;
   font-size: 16px;
@@ -323,7 +364,7 @@ span {
   border: 0.2px solid grey;
 }
 
-.searchBar:focus {
+#searchBar:focus {
   outline: none;
   border-color: #015c5d;
   box-shadow: 0 0 5px rgba(1, 92, 93, 0.697);
@@ -333,7 +374,13 @@ span {
   width: 350px;
   display: flex;
   flex-direction: row;
+  align-items: center;
+  gap: 20px;
+}
 
+.filterDiv {
+    display: flex;
+    align-items: center;
 }
 
 .filter-select {
@@ -355,15 +402,6 @@ span {
   border-color: #015c5d;
   box-shadow: 0 0 5px rgba(1, 92, 93, 0.697);
   outline: none;
-}
-
-.availabilityLabel {
-  margin-bottom: 8px;
-}
-
-.availability-container {
-  margin-bottom: 1rem;
-
 }
 
 .checkbox-group {

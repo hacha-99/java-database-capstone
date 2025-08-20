@@ -27,6 +27,8 @@ function loadDoctorCards() {
 }
 
 export function showBookingOverlay(e, doctor, patient) {
+    document.body.style.overflow = "hidden";
+
     const button = e.target;
     const rect = button.getBoundingClientRect();
     console.log(patient.name);
@@ -38,6 +40,7 @@ export function showBookingOverlay(e, doctor, patient) {
     document.body.appendChild(ripple);
 
     setTimeout(() => ripple.classList.add("active"), 50);
+
 
     const modalApp = document.createElement("div");
     modalApp.classList.add("modalApp");
@@ -57,8 +60,22 @@ export function showBookingOverlay(e, doctor, patient) {
 
     document.body.appendChild(modalApp);
 
-    document.querySelector("#appointment-date").addEventListener("change", async () => {
-        if (e.currentTarget.value !== "") {
+    ripple.addEventListener("click", e => {
+        ripple.remove();
+        modalApp.remove();
+        document.body.style.overflow = "initial";
+    });
+
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+            ripple.remove();
+            modalApp.remove();
+            document.body.style.overflow = "initial";
+        }
+    });
+
+    document.querySelector("#appointment-date").addEventListener("change", async (e) => {
+        if (document.querySelector("#appointment-date").value !== "") {
             const availability = await getDoctorAvailability("patient", doctor.id, document.querySelector("#appointment-date").value, localStorage.getItem("token"));
             document.querySelector("#appointment-time").innerHTML = `
                 <option value="" disabled selected>Select a date, then a time</option>
@@ -72,8 +89,8 @@ export function showBookingOverlay(e, doctor, patient) {
 
     setTimeout(() => modalApp.classList.add("active"), 600);
 
-    modalApp.querySelector(".confirm-booking").addEventListener("click", async () => {
-        e.currentTarget.disabled = true;
+    modalApp.querySelector(".confirm-booking").addEventListener("click", async (e) => {
+        modalApp.querySelector(".confirm-booking").disabled = true;
         const date = modalApp.querySelector("#appointment-date").value;
         const time = modalApp.querySelector("#appointment-time").value;
         const token = localStorage.getItem("token");
@@ -92,10 +109,11 @@ export function showBookingOverlay(e, doctor, patient) {
             alert("Appointment booked successfully");
             ripple.remove();
             modalApp.remove();
+            document.body.style.overflow = "initial";
         } else {
             alert("❌ Failed to book an appointment :: " + message);
         }
-        e.currentTarget.disabled = false;
+        modalApp.querySelector(".confirm-booking").disabled = false;
     });
 }
 

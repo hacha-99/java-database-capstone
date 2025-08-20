@@ -40,7 +40,7 @@ button {
   border: none;
   border-radius: 12px;
   padding: 10px 20px;
-  margin-top: 20px;
+  /* margin-top: 20px; */
   width: 200px;
   cursor: pointer;
   font-size: 16px;
@@ -50,16 +50,11 @@ button:hover {
   background-color: #A62B1F;
 }
 
-.adminBtn {
-  background-color: #f4f4f4;
-  color: #333;
-  font-weight: bold;
-  width: 110px;
-  padding: 10px 0;
-  border: none;
-  cursor: pointer;
+
+.availabilityLabel {
+  margin-bottom: 8px;
 }
 
-.adminBtn:hover {
-  background-color: #A62B1F;
+.availability-container {
+  margin-bottom: 1rem;
 }

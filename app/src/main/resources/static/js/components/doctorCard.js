@@ -41,13 +41,15 @@ export function createDoctorCard(doctor) {
     removeBtn.classList.add("cardButton");
     removeBtn.textContent = "Delete";
     removeBtn.addEventListener("click", async (e) => {
-      const token = localStorage.getItem("token");
-      const response = await deleteDoctor(doctor.id, token);
-      if (response.success) {
-        // triggerMessage(`Successfully deleted Dr. ${doctor.name}.`, "green");
-        card.style.opacity = "0";
-        setTimeout(() => card.remove(), 300);
-      }
+        removeBtn.disabled = true;
+        const token = localStorage.getItem("token");
+        const response = await deleteDoctor(doctor.id, token);
+        if (response.success) {
+            // triggerMessage(`Successfully deleted Dr. ${doctor.name}.`, "green");
+            card.style.opacity = "0";
+            setTimeout(() => card.remove(), 300);
+        }
+        removeBtn.disabled = false;
     });
     actionsDiv.appendChild(removeBtn);
 

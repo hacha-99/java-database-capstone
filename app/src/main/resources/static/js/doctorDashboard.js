@@ -17,7 +17,7 @@ let patientName = null;
 attachFilterListeners();
 
 function loadAppointments() {
-  getAllAppointments(selectedDate, patient, token)
+  getAllAppointments(selectedDate, patientName, token)
     .then(response => {
       tableBody.replaceChildren(); // empties innerHTML
       if (response.appointments.length > 0) {

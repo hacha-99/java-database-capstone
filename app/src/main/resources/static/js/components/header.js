@@ -20,7 +20,7 @@ function renderHeader() {
 
   let headerContent = `
           <header class="header">
-            <div class="logo-section">
+            <div class="logo-section" onclick="window.location.href = '/'">
               <img src="../assets/images/logo/logo.png" alt="Hospital CRM Logo" class="logo-img">
               <span class="logo-title">Hospital CMS</span>
             </div>
@@ -33,21 +33,21 @@ function renderHeader() {
     return;
   } else if (role === "admin") {
     headerContent += `
-           <button id="addDocBtn" class="adminBtn">Add Doctor</button>
-           <a href="#" onclick="logout()">Logout</a>`;
+           <button id="addDocBtn" class="headerBtn">Add Doctor</button>
+           <button class="headerBtn" onclick="logout()">Logout</button>`;
   } else if (role === "doctor") {
     headerContent += `
-           <button class="adminBtn" onclick="selectRole('doctor')">Home</button>
-           <a href="#" onclick="logout()">Logout</a>`;
+           <button class="headerBtn" onclick="selectRole('doctor')">Home</button>
+           <button class="headerBtn" onclick="logout()">Logout</button>`;
   } else if (role === "patient") {
     headerContent += `
-           <button id="patientLogin" class="adminBtn">Login</button>
-           <button id="patientSignup" class="adminBtn">Sign Up</button>`;
+           <button id="patientLogin" class="headerBtn">Login</button>
+           <button id="patientSignup" class="headerBtn">Sign Up</button>`;
   } else if (role === "loggedPatient") {
     headerContent += `
-           <button id="home" class="adminBtn" onclick="window.location.href='/pages/loggedPatientDashboard.html'">Home</button>
-           <button id="patientAppointments" class="adminBtn" onclick="window.location.href='/pages/patientAppointments.html'">Appointments</button>
-           <a href="#" onclick="logoutPatient()">Logout</a>`;
+           <button id="home" class="headerBtn" onclick="window.location.href='/pages/loggedPatientDashboard.html'">Home</button>
+           <button id="patientAppointments" class="headerBtn" onclick="window.location.href='/pages/patientAppointments.html'">Appointments</button>
+           <button class="headerBtn" onclick="logoutPatient()">Logout</button>`;
   }
 
   headerContent += `</nav></header>`;

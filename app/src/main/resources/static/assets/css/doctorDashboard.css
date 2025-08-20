@@ -68,7 +68,7 @@ tbody tr:hover {
 
 #date-picker {
   margin-left: 10px;
-  margin-top: 13px;
+  /* margin-top: 13px; */
   border-radius: 8px;
   padding: 10px;
   height: 30px;
