@@ -29,7 +29,7 @@ function loadAppointments() {
             phone: app.patientPhone,
             address: app.patientAddress
           }
-          tableBody.appendChild(createPatientRow(patient, app.id, app.doctor.id));
+          tableBody.appendChild(createPatientRow(patient, app.id, app.doctorId));
         });
       }
       else {
@@ -37,7 +37,7 @@ function loadAppointments() {
       }
     })
     .catch(error => {
-      tableBody.innerHTML = `<tr><td class="noPatientRecord" colspan='5'>Error loading appointments. Try again later.</td></tr>`
+      tableBody.innerHTML = `<tr><td class="noPatientRecord" colspan='5'> ${error}Error loading appointments. Try again later.</td></tr>`
     });
 }
 
@@ -50,11 +50,13 @@ function attachFilterListeners() {
     e.currentTarget.disabled = false;
   });
 
+  document.querySelector("#date-picker").value = "";
   document.querySelector("#date-picker").addEventListener("change", async e => {
     selectedDate = e.target.value;
     loadAppointments();
   });
 
+  document.querySelector("#searchBar").value = "";
   document.querySelector("#searchBar").addEventListener("input", async e => {
     const searchbarValue = e.target.value.trim();
     patientName = searchbarValue !== "" ? searchbarValue : null;

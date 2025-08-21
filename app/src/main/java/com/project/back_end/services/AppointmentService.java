@@ -151,20 +151,17 @@ public class AppointmentService {
     @Transactional
     public ResponseEntity<Map<String, Object>> getAppointments(String patientName, LocalDate date, String token) {
         try {
-            Map<String, Object> response = new HashMap<>();
+            boolean hasPatientName = patientName != null && !patientName.isBlank();
 
             // check if doctor exists
             Doctor doc = doctorRepository.findByEmail(tokenService.extractEmail(token));
             if (doc == null) {
-                response.put("message", "Failed to find matching doctor.");
-                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("message", "Failed to find matching doctor."));
             }
-
-            String safePatientName = (patientName == null) ? "" : patientName.trim();
 
             // act depending on whether patientname is empty or not
             List<Appointment> apps;
-            if (!safePatientName.isEmpty()) {
+            if (hasPatientName) {
                 apps = appointmentRepository.findByDoctorIdAndPatient_NameContainingIgnoreCaseAndAppointmentTimeBetween(
                         doc.getId(), patientName.trim(), date.atStartOfDay(),
                         date.plusDays(1).atStartOfDay());
@@ -174,8 +171,7 @@ public class AppointmentService {
                         date.plusDays(1).atStartOfDay());
             }
 
-            response.put("appointments", apps.stream().map(app -> mapToDTO(app)).collect(Collectors.toList()));
-            return ResponseEntity.ok(response);
+            return ResponseEntity.ok(Map.of("appointments", apps.stream().map(app -> mapToDTO(app)).collect(Collectors.toList())));
         } catch (Exception e) {
             logger.error("Exception in getAppointments", e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)

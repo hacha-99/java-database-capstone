@@ -91,7 +91,7 @@ async function handleFilterChange() {
   const filterValue = document.getElementById("appointmentFilter").value;
 
   const name = searchBarValue || null;
-  const condition = filterValue === "allAppointments" ? null : filterValue || null;
+  const condition = filterValue === "" ? null : filterValue || null;
 
   try {
     const response = await filterAppointments(condition, name, token);

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.back_end.models.Appointment;
@@ -34,13 +35,17 @@ public class AppointmentController {
 
     // - Handles HTTP GET requests to fetch appointments based on date and patient
     // name.
-    @GetMapping("/{date}/{patientName}/{token}")
-    public ResponseEntity<?> getAppointments(@PathVariable LocalDate date, @PathVariable String patientName,
-            @PathVariable String token) {
+    @GetMapping
+    public ResponseEntity<?> getAppointments(
+            @RequestParam(required = false) LocalDate date,
+            @RequestParam(required = false) String patientName,
+            @RequestParam(required = true) String token) {
         ResponseEntity<Map<String, String>> validation = service.validateToken(token, "doctor");
         if (!validation.getStatusCode().is2xxSuccessful()) {
             return validation;
         }
+
+        date = date != null ? date : LocalDate.now();
         return appointmentService.getAppointments(patientName, date, token);
     }
 

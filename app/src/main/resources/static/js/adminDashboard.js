@@ -87,6 +87,10 @@ function collectDoctorData() {
 }
 
 function attachFilterListeners() {
+  document.getElementById("searchBar").value = "";
+  document.getElementById("filterTime").value = "";
+  document.getElementById("filterSpecialty").value = "";
+
   document.getElementById("searchBar")?.addEventListener("input", filterDoctorsOnChange);
   document.getElementById("filterTime")?.addEventListener("change", filterDoctorsOnChange);
   document.getElementById("filterSpecialty")?.addEventListener("change", filterDoctorsOnChange);
