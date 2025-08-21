@@ -47,7 +47,7 @@
   input:focus, textarea:focus {
     border-color: #015c5d;
     box-shadow: 0 0 4px #a7f3d0;
-    filter: brightness(1.5);
+    filter: brightness(1.2);
   }
 
   #patientName{

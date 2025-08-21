@@ -32,10 +32,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         patientNameInput.value = patientName;
     }
 
+    let response;
+
     // Fetch and pre-fill existing prescription if it exists
     if (appointmentId && token) {
         try {
-            const response = await getPrescription(appointmentId, token);
+            response = await getPrescription(appointmentId, token);
             console.log("getPrescription :: ", response);
 
             // Now, check if the prescription exists in the response and access it from the array
@@ -45,7 +47,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 // medicinesInput.value = existingPrescription.medication || "";
                 // dosageInput.value = existingPrescription.dosage || "";
                 // notesInput.value = existingPrescription.doctorNotes || "";
-                medicinesInput.value = existingPrescription.medication.join(";\n") || YOU;
+                medicinesInput.value = existingPrescription.medication.map(med => `${med.name}`).join("; ") || YOU;
                 dosageInput.value = existingPrescription.medication.map(med => `${med.name}: ${med.dosage}`).join(";\n") || "";
                 notesInput.value = existingPrescription.medication.map(med => `${med.name}: ${med.doctorNotes}`).join(";\n") || "";
             }
@@ -71,15 +73,18 @@ document.addEventListener('DOMContentLoaded', async () => {
             return;
         }
         let medication = [];
-        const dosages = dosageInput.value.split(";");
-        const doctorNotes = notesInput.value.split(";");
+        const dosages = dosageInput.value.split(";").filter(dosage => dosage !== "");
+        const doctorNotes = notesInput.value.split(";").filter(dosage => dosage !== "");
+        // filter removes all empty strings
 
         let counter = 0;
-        medicinesInput.value.split(";").forEach(medicineName => {
+        // remove empty strings again with filter
+        medicinesInput.value.split(";").filter(med => med !== "").forEach(medicineName => {
+            console.log(counter);
             medication.push(
                 { 
                     name: medicineName.trim(),
-                    dosage: dosages[counter].trim()
+                    dosage: dosages[counter].split(":")[1].trim() || ""
                 })
             counter++;
         });
@@ -95,11 +100,22 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
         });
 
-        const prescription = {
-            patientName: patientNameInput.value,
-            medication,
-            appointmentId
-        };
+        let prescription;
+
+        if(response && response.prescription && response.prescription.length > 0){
+            prescription = {
+                id: response.prescription[0].id,
+                patientName: patientNameInput.value,
+                medication,
+                appointmentId
+            };
+        } else {
+            prescription = {
+                patientName: patientNameInput.value,
+                medication,
+                appointmentId
+            };
+        }
 
         const { success, message } = await savePrescription(prescription, token);
 
