@@ -8,6 +8,7 @@ import java.time.LocalTime;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"doctor_id", "appointment_time"}))
 @Entity
 public class Appointment {
 

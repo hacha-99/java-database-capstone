@@ -63,7 +63,7 @@ public class DoctorService {
             List<String> bookedSlots = bookedAppointments.stream()
                     .map(app -> {
                         String start = app.getAppointmentTimeOnly().toString().substring(0, 5);
-                        String end = app.getEndTime().toString().substring(0, 5);
+                        String end = app.getAppointmentTimeOnly().plusHours(1).toString().substring(0, 5);
                         return (start + "-" + end);
                     })
                     .collect(Collectors.toList());

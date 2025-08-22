@@ -90,6 +90,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
         counter = 0;
 
+        // match doctor notes with medication names and add the to medication object
         doctorNotes.forEach(note =>{
             let found = medication.find(med => med.name === note.split(":")[0].trim());
             if(found){
@@ -101,7 +102,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
 
         let prescription;
-
+        // if there was a preexisting prescription, use its id to overwrite it
         if(response && response.prescription && response.prescription.length > 0){
             prescription = {
                 id: response.prescription[0].id,

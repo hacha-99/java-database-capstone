@@ -60,6 +60,9 @@ export function showBookingOverlay(e, doctor, patient) {
 
     document.body.appendChild(modalApp);
 
+    const today = new Date().toISOString().split("T")[0]; // yyyy-MM-dd
+    document.getElementById("appointment-date").min = today;
+
     ripple.addEventListener("click", e => {
         ripple.remove();
         modalApp.remove();

@@ -66,7 +66,7 @@ public class AppointmentController {
     }
 
     // - Handles HTTP PUT requests to modify an existing appointment.
-    @PutMapping("/token")
+    @PutMapping("/{token}")
     public ResponseEntity<?> updateAppointment(@PathVariable String token,
             @RequestBody @Valid Appointment appointment) {
 

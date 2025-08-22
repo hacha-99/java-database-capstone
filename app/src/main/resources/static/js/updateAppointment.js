@@ -1,7 +1,7 @@
 // updateAppointment.js
 
 import { updateAppointment } from "../js/services/appointmentRecordService.js";
-import { getDoctors } from "../js/services/doctorServices.js";
+import { getDoctorAvailability, getDoctors } from "../js/services/doctorServices.js";
 
 
 document.addEventListener("DOMContentLoaded", initializePage);
@@ -27,7 +27,7 @@ async function initializePage() {
 
   // get doctor to display only the available time of doctor
   getDoctors()
-    .then(doctors => {
+    .then(async doctors => {
       // Find the doctor by the ID from the URL
       const doctor = doctors.find(d => d.id == doctorId);
       if (!doctor) {
@@ -39,10 +39,20 @@ async function initializePage() {
       document.getElementById("patientName").value = patientName || "You";
       document.getElementById("doctorName").value = doctorName;
       document.getElementById("appointmentDate").value = appointmentDate;
-      document.getElementById("appointmentTime").value = appointmentTime;
+
+      // TODO: add eventlistener to date input to call doctor availability and adjust availableSlots
+      const availableSlots = await getDoctorAvailability("patient", doctorId, document.getElementById("appointmentDate").value, token);
 
       const timeSelect = document.getElementById("appointmentTime");
-      doctor.availableTimes.forEach(time => {
+
+      const original = document.createElement("option");
+      original.value = "";
+      original.textContent = `Appointment currently at ${appointmentTime.slice(0,5)}`;
+      original.disabled = true;
+      original.selected = true;
+      timeSelect.appendChild(original);
+
+      availableSlots.forEach(time => {
         const option = document.createElement("option");
         option.value = time;
         option.textContent = time;
