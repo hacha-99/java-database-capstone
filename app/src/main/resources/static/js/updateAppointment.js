@@ -39,25 +39,16 @@ async function initializePage() {
       document.getElementById("patientName").value = patientName || "You";
       document.getElementById("doctorName").value = doctorName;
       document.getElementById("appointmentDate").value = appointmentDate;
+      
+      let availableSlots;
 
-      // TODO: add eventlistener to date input to call doctor availability and adjust availableSlots
-      const availableSlots = await getDoctorAvailability("patient", doctorId, document.getElementById("appointmentDate").value, token);
-
-      const timeSelect = document.getElementById("appointmentTime");
-
-      const original = document.createElement("option");
-      original.value = "";
-      original.textContent = `Appointment currently at ${appointmentTime.slice(0,5)}`;
-      original.disabled = true;
-      original.selected = true;
-      timeSelect.appendChild(original);
-
-      availableSlots.forEach(time => {
-        const option = document.createElement("option");
-        option.value = time;
-        option.textContent = time;
-        timeSelect.appendChild(option);
+      // this adds actually available time slots to the select-element instead of offering all slots
+      document.getElementById("appointmentDate").addEventListener("change", async e => {
+        availableSlots = await getDoctorAvailability("patient", doctorId, document.getElementById("appointmentDate").value, token);
+        refreshAvailableSlots(availableSlots, appointmentDate, appointmentTime);
       });
+      // trigger event once manually to fill select the first time
+      document.getElementById("appointmentDate").dispatchEvent(new Event("change", { bubbles: true }));
 
       // Handle form submission for updating the appointment
       document.getElementById("updateAppointmentForm").addEventListener("submit", async (e) => {
@@ -92,5 +83,35 @@ async function initializePage() {
     .catch(error => {
       console.error("Error fetching doctors:", error);
       alert("❌ Failed to load doctor data.");
+    });
+}
+
+function refreshAvailableSlots(availableSlots, appointmentDate, appointmentTime){
+    const timeSelect = document.getElementById("appointmentTime");
+    timeSelect.replaceChildren();
+
+    if(document.getElementById("appointmentDate").value == appointmentDate){ // if original date of appointment and chosen appointment match, show current time slot
+        const original = document.createElement("option");
+        original.value = "";
+        original.textContent = `Appointment currently at ${appointmentTime.slice(0,5)}`;
+        original.disabled = true;
+        original.selected = true;
+        timeSelect.appendChild(original);
+
+    } else if(availableSlots.length === 0){ // if no slots available for that date, add hint
+        const noSlots = document.createElement("option");
+        noSlots.value = "";
+        noSlots.textContent = `No appointments available for this date.`;
+        noSlots.disabled = true;
+        noSlots.selected = true;
+        timeSelect.appendChild(original);
+        return;
+    }
+
+    availableSlots.forEach(time => {
+    const option = document.createElement("option");
+    option.value = time;
+    option.textContent = time;
+    timeSelect.appendChild(option);
     });
 }
