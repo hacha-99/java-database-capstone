@@ -38,7 +38,9 @@ async function initializePage() {
       // Fill the form with the appointment data passed in the URL
       document.getElementById("patientName").value = patientName || "You";
       document.getElementById("doctorName").value = doctorName;
+
       document.getElementById("appointmentDate").value = appointmentDate;
+      document.getElementById("appointmentDate").min = (new Date()).toISOString().split("T")[0];
       
       let availableSlots;
 

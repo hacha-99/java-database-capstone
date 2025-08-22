@@ -51,8 +51,8 @@ function renderAppointments(appointments) {
       <td>${appointment.doctorName}</td>
       <td>${appointment.appointmentDate}</td>
       <td>${appointment.appointmentTimeOnly}</td>
-      <td>${appointment.status == 0 ? `<img src="../assets/images/edit/edit.png" alt="Edit" class="prescription-btn" data-id="${appointment.patientId}">` : "-"}</td>
-    `;
+      <td>${(appointment.status == 0 || Date.parse(appointment.appointmentTime) > (new Date())) ? `<img src="../assets/images/edit/edit.png" alt="Edit" class="prescription-btn" data-id="${appointment.patientId}">` : "-"}</td>
+    `; // last line checks whether appointment is not completed or the appointment time has already passed before offering update button
 
     if (appointment.status == 0) {
       const actionBtn = tr.querySelector(".prescription-btn");
