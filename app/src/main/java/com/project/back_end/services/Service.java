@@ -185,11 +185,11 @@ public class Service {
             boolean hasCondition = condition != null && !condition.isBlank();
 
             if (hasName && hasCondition) {
-                return patientService.filterByCondition(condition, patient.getId());
+                return patientService.filterByDoctorAndCondition(condition, name, patient.getId());
             } else if (hasName) {
                 return patientService.filterByDoctor(name, patient.getId());
             } else if (hasCondition) {
-                return patientService.filterByDoctorAndCondition(condition, name, patient.getId());
+                return patientService.filterByCondition(condition, patient.getId());
             } else {
                 return patientService.getPatientAppointment(patient.getId(), token);
             }
