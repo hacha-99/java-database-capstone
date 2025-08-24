@@ -76,9 +76,9 @@ function collectDoctorData() {
   const checkboxes = document.querySelectorAll("input[name='availability']:checked");
   const times = Array.from(checkboxes).map(checkbox => checkbox.value);
 
-  return doctor = {
+  return {
     name: document.querySelector("#doctorName").value.trim(),
-    specialization: document.querySelector("#specialization").value.trim(),
+    specialty: document.querySelector("#specialization").value.trim(),
     email: document.querySelector("#doctorEmail").value.trim(),
     password: document.querySelector("#doctorPassword").value.trim(),
     phone: document.querySelector("#doctorPhone").value.trim(),
@@ -106,8 +106,12 @@ function adminAddDoctor() {
 
   saveDoctor(doctor, token)
     .then(response => {
-      console.log(response.message);
-      window.location.reload();
+        console.log(response.success);
+        if(response.success){
+            window.location.reload();
+        }else {
+            alert(`❌ Please make sure all fields have valid values.`);
+        }
     })
     .catch(error => {
       console.error("Failed to save doctor:", error);
