@@ -106,7 +106,6 @@ function adminAddDoctor() {
 
   saveDoctor(doctor, token)
     .then(response => {
-        console.log(response.success);
         if(response.success){
             window.location.reload();
         }else {
